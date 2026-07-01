@@ -59,6 +59,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// ===================== Slider sync helpers =====================
+function syncSlider(numId, rangeId, labelId, prefix, calcFn) {
+  const val = parseFloat(document.getElementById(rangeId).value) || 0;
+  document.getElementById(numId).value = val;
+  document.getElementById(labelId).textContent = prefix ? `${prefix}${val.toLocaleString('es-MX')}` : val;
+  updateSliderTrack(rangeId);
+  calcFn();
+}
+function syncNumber(numId, rangeId, labelId, prefix, calcFn) {
+  const val = parseFloat(document.getElementById(numId).value) || 0;
+  const range = document.getElementById(rangeId);
+  range.value = Math.min(Math.max(val, range.min), range.max);
+  document.getElementById(labelId).textContent = prefix ? `${prefix}${val.toLocaleString('es-MX')}` : val;
+  updateSliderTrack(rangeId);
+  calcFn();
+}
+function updateSliderTrack(rangeId) {
+  const r = document.getElementById(rangeId);
+  const pct = ((r.value - r.min) / (r.max - r.min)) * 100;
+  r.style.background = `linear-gradient(to right, var(--navy) ${pct}%, var(--border) ${pct}%)`;
+}
+
 // ===================== Calculadoras laborales =====================
 function calcularCuota() {
   const sdi = parseFloat(document.getElementById('cuota-sdi').value) || 0;
