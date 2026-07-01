@@ -59,6 +59,22 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// ===================== Calculadoras mini (index) =====================
+function idxCalcCuota() {
+  const sdi = parseFloat(document.getElementById('idx-cuota-sdi').value) || 0;
+  const diaria = sdi * 0.02;
+  const mensual = diaria * 30;
+  document.getElementById('idx-cuota-resultado').innerHTML = sdi > 0
+    ? `<div style="display:flex;flex-direction:column;gap:.3rem"><span>Cuota diaria: $${diaria.toLocaleString('es-MX',{minimumFractionDigits:2})}</span><strong style="color:var(--gold-bright);font-size:1.1rem">Mensual: $${mensual.toLocaleString('es-MX',{minimumFractionDigits:2})} MXN</strong></div>`
+    : '—';
+}
+function idxCalcAguinaldo() {
+  const salario = parseFloat(document.getElementById('idx-ag-salario').value) || 0;
+  const resultado = (salario / 30) * 15;
+  document.getElementById('idx-ag-resultado').textContent = resultado > 0
+    ? `$${resultado.toLocaleString('es-MX', {minimumFractionDigits:2})} MXN` : '—';
+}
+
 // ===================== Slider sync helpers =====================
 function syncSlider(numId, rangeId, labelId, prefix, calcFn) {
   const val = parseFloat(document.getElementById(rangeId).value) || 0;
