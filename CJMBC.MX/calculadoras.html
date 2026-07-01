@@ -159,12 +159,81 @@
         </div>
       </div>
 
+
+        <!-- Calculadora 7: Renuncia Voluntaria -->
+        <div class="form-card">
+          <h3>Renuncia Voluntaria</h3>
+          <p class="card-subtitle">Art. 76, 80, 87 y 162 fracc. III de la LFT</p>
+          <div class="field"><label>Salario mensual bruto ($)</label><input type="number" id="rv-salario" placeholder="Ej. 10000" min="0"></div>
+          <div class="field"><label>Salario mínimo diario ($)</label><input type="number" id="rv-salmin" placeholder="Ej. 248.93" min="0" step="0.01"></div>
+          <div class="field"><label>Fecha de ingreso</label><input type="date" id="rv-ingreso"></div>
+          <div class="field"><label>Fecha de renuncia</label><input type="date" id="rv-renuncia"></div>
+          <div class="field"><label>Días de vacaciones ya tomados este periodo</label><input type="number" id="rv-vacsion" placeholder="0" min="0" value="0"></div>
+          <button class="btn btn-navy" style="width:100%;margin-top:1rem" onclick="calcRenuncia()">Calcular Finiquito</button>
+          <div class="card" id="rv-resultado" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem;display:none">
+            <p style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</p>
+            <div id="rv-detalle" style="margin-top:.5rem;color:var(--ink)">—</div>
+          </div>
+          <p style="font-size:.8rem;color:var(--ink-soft);margin-top:.75rem">Al renunciar voluntariamente te corresponde: aguinaldo proporcional (Art. 87), vacaciones no disfrutadas (Art. 76) y prima vacacional (Art. 80, mín. 25%). La prima de antigüedad solo aplica si tienes 15+ años (Art. 162, fracc. III). No corresponden los 3 meses constitucionales ni los 20 días por año.</p>
+        </div>
+
+        <!-- Calculadora 8: Despido Justificado -->
+        <div class="form-card">
+          <h3>Despido Justificado (Art. 47)</h3>
+          <p class="card-subtitle">Solo finiquito — sin indemnización</p>
+          <div class="field"><label>Salario mensual bruto ($)</label><input type="number" id="dj-salario" placeholder="Ej. 10000" min="0"></div>
+          <div class="field"><label>Días de vacaciones ya tomados</label><input type="number" id="dj-vacsion" placeholder="0" min="0" value="0"></div>
+          <div class="field"><label>Fecha de ingreso</label><input type="date" id="dj-ingreso"></div>
+          <div class="field"><label>Fecha de despido</label><input type="date" id="dj-despido"></div>
+          <button class="btn btn-navy" style="width:100%;margin-top:1rem" onclick="calcDespJust()">Calcular Finiquito</button>
+          <div class="card" id="dj-resultado" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem;display:none">
+            <p style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</p>
+            <div id="dj-detalle" style="margin-top:.5rem;color:var(--ink)">—</div>
+          </div>
+          <p style="font-size:.8rem;color:var(--ink-soft);margin-top:.75rem">En caso de despido justificado (Art. 47 LFT), el trabajador solo recibe el finiquito: aguinaldo proporcional, vacaciones no gozadas y prima vacacional. No proceden los 3 meses ni los 20 días.</p>
+        </div>
+
+        <!-- Calculadora 9: Indemnización por Despido Injustificado -->
+        <div class="form-card">
+          <h3>Indemnización por Despido Injustificado</h3>
+          <p class="card-subtitle">Art. 48, 50 y 162 de la LFT</p>
+          <div class="field"><label>Salario mensual bruto ($)</label><input type="number" id="di-salario" placeholder="Ej. 10000" min="0"></div>
+          <div class="field"><label>Años completos trabajados</label><input type="number" id="di-anios" placeholder="Ej. 3" min="0"></div>
+          <div class="field"><label>Meses adicionales (fracción)</label><input type="number" id="di-meses" placeholder="0" min="0" max="11" value="0"></div>
+          <div class="field"><label>Salario mínimo diario vigente ($)</label><input type="number" id="di-salmin" placeholder="Ej. 248.93" min="0" step="0.01"></div>
+          <button class="btn btn-navy" style="width:100%;margin-top:1rem" onclick="calcLiquidacion()">Calcular Liquidación</button>
+          <div class="card" id="di-resultado" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem;display:none">
+            <p style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</p>
+            <div id="di-detalle" style="margin-top:.5rem;color:var(--ink)">—</div>
+          </div>
+          <p style="font-size:.8rem;color:var(--ink-soft);margin-top:.75rem">Incluye: 3 meses de salario (Art. 48), 20 días por año trabajado (Art. 50) y prima de antigüedad a razón del salario mínimo (Art. 162).</p>
+        </div>
+
     </div>
 
-    <div class="card" style="margin-top:2rem;text-align:center">
-      <p style="color:var(--ink-soft);font-size:.9rem">¿Necesitas ayuda para reclamar tu finiquito o aguinaldo? Nuestros asesores te apoyan sin costo.</p>
-      <a href="/#afiliacion" class="btn btn-navy" style="margin-top:1rem">Solicitar asesoría — Afíliate gratis</a>
+    <div class="card" style="background:var(--gold-bright);border:none;margin-top:2rem;border-radius:1rem;padding:2rem">
+      <h2 style="color:var(--navy);margin-top:0">¿Te deben prestaciones o te despidieron?</h2>
+      <p style="color:var(--navy)">Como <strong>afiliado al sindicato</strong>, te brindamos asesoría laboral gratuita, acompañamiento legal y representación ante tu patrón para que recibas lo que te corresponde por ley. No estás solo.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem">
+        <a href="/#afiliacion" class="btn btn-navy">Afíliate gratis</a>
+        <a href="/#contacto" class="btn" style="background:white;color:var(--navy);border:2px solid var(--navy)">Contáctanos por WhatsApp</a>
+      </div>
     </div>
+
+    <div class="card" style="margin-top:2rem;padding:2rem">
+      <h2 style="color:var(--navy);margin-top:0;font-weight:700">Recursos oficiales para el trabajador</h2>
+      <p style="color:var(--ink-soft)">Instituciones del Gobierno de México que te pueden ayudar</p>
+      <div class="grid grid-2" style="margin-top:1.5rem">
+        <div class="card" style="margin-top:0"><strong>PROFEDET</strong><p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Asesoría y representación legal gratuita en materia laboral</p></div>
+        <div class="card" style="margin-top:0"><strong>CONASAMI</strong><p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Consulta salarios mínimos generales y profesionales vigentes</p></div>
+        <div class="card" style="margin-top:0"><strong>Centro de Conciliación Laboral</strong><p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Conciliación obligatoria previa a juicio laboral</p></div>
+        <div class="card" style="margin-top:0"><strong>IMSS — Trámites</strong><p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Alta, semanas cotizadas, clínica asignada y más</p></div>
+        <div class="card" style="margin-top:0"><strong>INFONAVIT</strong><p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Consulta tu saldo, puntos y opciones de crédito</p></div>
+        <div class="card" style="margin-top:0"><strong>CONSAR — Mi Afore</strong><p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Localiza tu Afore, consulta saldo y rendimientos</p></div>
+      </div>
+    </div>
+
+    <p style="text-align:center;color:var(--ink-soft);font-size:.875rem;margin-top:2rem">Las calculadoras son herramientas informativas basadas en la Ley Federal del Trabajo vigente. Los resultados son estimados y no constituyen asesoría legal. Para tu caso específico, acude a la <strong>PROFEDET</strong>, al <strong>Centro de Conciliación Laboral</strong> o <strong>afíliate al sindicato</strong> para recibir orientación personalizada.</p>
   </div>
 </section>
 
@@ -176,5 +245,14 @@
 </footer>
 
 <script src="/js/main.js?v=3"></script>
+<script>
+function vacDias(a){if(a<1)return 0;if(a<2)return 12;if(a<3)return 14;if(a<4)return 16;if(a<5)return 18;return 20+2*Math.floor((a-5)/5);}
+function fmtMXN(v){return'$'+v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+function desglose(items,total){return'<div style="display:grid;gap:.4rem;font-size:.9rem">'+items.map(function(x){return'<div style="display:flex;justify-content:space-between"><span>'+x[0]+'</span><strong>'+fmtMXN(x[1])+'</strong></div>';}).join('')+'<hr style="border-color:rgba(227,179,65,.35);margin:.4rem 0"><div style="display:flex;justify-content:space-between"><span><strong>Total estimado</strong></span><strong style="color:var(--gold-bright)">'+fmtMXN(total)+'</strong></div></div>';}
+function calcFiniquito(salario,vacTomadas,ingreso,fecha){var sd=salario/30.4;var a=new Date(ingreso);a.setFullYear(fecha.getFullYear());if(a>fecha)a.setFullYear(fecha.getFullYear()-1);var dias=Math.round((fecha-a)/864e5);var años=Math.floor((fecha-ingreso)/(365.25*864e5));var ag=15*sd*(dias/365);var vc=vacDias(años+1)*(dias/365);var vp=Math.max(0,vc-vacTomadas);var pv=vp*sd;var prc=pv*0.25;return{sd:sd,años:años,dias:dias,ag:ag,pv:pv,vp:vp,prc:prc};}
+function calcRenuncia(){var sal=parseFloat(document.getElementById('rv-salario').value)||0;var sm=parseFloat(document.getElementById('rv-salmin').value)||0;var ing=new Date(document.getElementById('rv-ingreso').value+'T12:00:00');var ren=new Date(document.getElementById('rv-renuncia').value+'T12:00:00');var vt=parseFloat(document.getElementById('rv-vacsion').value)||0;if(!sal||isNaN(ing.getTime())||isNaN(ren.getTime()))return;var r=calcFiniquito(sal,vt,ing,ren);var pa=r.años>=15&&sm>0?12*r.años*sm:0;var items=[['Aguinaldo proporcional',r.ag],['Vacaciones ('+r.vp.toFixed(1)+' días)',r.pv],['Prima vacacional (25%)',r.prc]];if(pa>0)items.push(['Prima de antigüedad (Art. 162)',pa]);var t=r.ag+r.pv+r.prc+pa;document.getElementById('rv-detalle').innerHTML=desglose(items,t);document.getElementById('rv-resultado').style.display='block';}
+function calcDespJust(){var sal=parseFloat(document.getElementById('dj-salario').value)||0;var ing=new Date(document.getElementById('dj-ingreso').value+'T12:00:00');var dep=new Date(document.getElementById('dj-despido').value+'T12:00:00');var vt=parseFloat(document.getElementById('dj-vacsion').value)||0;if(!sal||isNaN(ing.getTime())||isNaN(dep.getTime()))return;var r=calcFiniquito(sal,vt,ing,dep);var items=[['Aguinaldo proporcional',r.ag],['Vacaciones ('+r.vp.toFixed(1)+' días)',r.pv],['Prima vacacional (25%)',r.prc]];var t=r.ag+r.pv+r.prc;document.getElementById('dj-detalle').innerHTML=desglose(items,t);document.getElementById('dj-resultado').style.display='block';}
+function calcLiquidacion(){var sal=parseFloat(document.getElementById('di-salario').value)||0;var anios=parseFloat(document.getElementById('di-anios').value)||0;var meses=parseFloat(document.getElementById('di-meses').value)||0;var sm=parseFloat(document.getElementById('di-salmin').value)||0;if(!sal)return;var sd=sal/30.4;var ta=anios+(meses/12);var con=90*sd;var vd=20*ta*sd;var pa=sm>0?12*ta*sm:0;var items=[['3 meses constitucionales (Art. 48)',con],['20 días × año (Art. 50)',vd]];if(pa>0)items.push(['Prima de antigüedad (Art. 162)',pa]);var t=con+vd+pa;document.getElementById('di-detalle').innerHTML=desglose(items,t);document.getElementById('di-resultado').style.display='block';}
+</script>
 </body>
 </html>
