@@ -168,6 +168,49 @@
   </div>
 </section>
 
+<!-- ===================== CALCULADORAS ===================== -->
+<section id="calculadoras" class="section" style="background:var(--navy-deep)">
+  <div class="container">
+    <div class="section-head" style="color:#fff">
+      <span class="eyebrow bc">Herramientas</span>
+      <h2 style="color:#fff">Calcula tus <span style="color:var(--gold-bright)">Derechos Laborales</span></h2>
+      <p style="color:rgba(255,255,255,.7)">Conoce cuánto te corresponde. Estimaciones orientativas — nuestros asesores te apoyan sin costo.</p>
+    </div>
+    <div class="grid grid-2" style="gap:1.5rem">
+
+      <div class="form-card" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:#fff">
+        <h3 style="font-size:1.1rem;margin-bottom:1.25rem;color:#fff">Cuota sindical (2% del SDI)</h3>
+        <div class="field">
+          <label style="color:rgba(255,255,255,.8)">SDI / Salario base diario — <strong id="idx-cuota-sdi-val" style="color:var(--gold-bright)">$0</strong></label>
+          <input type="range" class="slider" id="idx-cuota-sdi-range" min="100" max="3000" step="10" value="100" oninput="syncSlider('idx-cuota-sdi','idx-cuota-sdi-range','idx-cuota-sdi-val','$',idxCalcCuota)" />
+          <input type="number" id="idx-cuota-sdi" placeholder="o escribe aquí…" oninput="syncNumber('idx-cuota-sdi','idx-cuota-sdi-range','idx-cuota-sdi-val','$',idxCalcCuota)" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff" />
+        </div>
+        <div style="background:rgba(227,179,65,.12);border:1px solid rgba(227,179,65,.35);border-radius:var(--radius);padding:1rem;margin-top:1rem">
+          <span style="font-size:.85rem;color:rgba(255,255,255,.6)">Cuota sindical (2%)</span>
+          <div id="idx-cuota-resultado" style="margin-top:.5rem;color:#fff">—</div>
+        </div>
+      </div>
+
+      <div class="form-card" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:#fff">
+        <h3 style="font-size:1.1rem;margin-bottom:1.25rem;color:#fff">Aguinaldo</h3>
+        <div class="field">
+          <label style="color:rgba(255,255,255,.8)">Salario mensual (MXN) — <strong id="idx-ag-salario-val" style="color:var(--gold-bright)">$0</strong></label>
+          <input type="range" class="slider" id="idx-ag-salario-range" min="3000" max="80000" step="500" value="3000" oninput="syncSlider('idx-ag-salario','idx-ag-salario-range','idx-ag-salario-val','$',idxCalcAguinaldo)" />
+          <input type="number" id="idx-ag-salario" placeholder="o escribe aquí…" oninput="syncNumber('idx-ag-salario','idx-ag-salario-range','idx-ag-salario-val','$',idxCalcAguinaldo)" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff" />
+        </div>
+        <div style="background:rgba(227,179,65,.12);border:1px solid rgba(227,179,65,.35);border-radius:var(--radius);padding:1rem;margin-top:1rem">
+          <span style="font-size:.85rem;color:rgba(255,255,255,.6)">Aguinaldo estimado (15 días)</span>
+          <div id="idx-ag-resultado" style="font-size:1.4rem;font-weight:700;color:var(--gold-bright);margin-top:.3rem">—</div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <a href="/calculadoras.html" class="btn btn-gold">Ver todas las calculadoras →</a>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== BENEFICIOS REALES ===================== -->
 <section class="section" style="background:#fff">
   <div class="container">
