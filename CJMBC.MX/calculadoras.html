@@ -6,7 +6,13 @@
 <title>Calculadoras laborales | Confederación Joven de México</title>
 <meta name="theme-color" content="#1a3050" />
 <link rel="icon" href="/img/logo.png" type="image/png" />
-<link rel="stylesheet" href="/css/main.css?v=6" />
+<link rel="stylesheet" href="/css/main.css?v=5" />
+<style>
+  .card-subtitle{font-size:.8rem;color:var(--ink-soft);margin:.1rem 0 1.1rem;font-style:italic}
+  .slider{width:100%;accent-color:var(--gold);cursor:pointer;margin-bottom:.35rem}
+  .field input[type="range"]{padding:0;border:none;background:none;box-shadow:none}
+  .field input[type="range"]:focus{outline:none;border:none}
+</style>
 </head>
 <body>
 
@@ -24,7 +30,7 @@
       <a href="/calculadoras.html" style="color:var(--gold-bright)">Calculadoras</a>
       <a href="/#contacto">Contacto</a>
     </nav>
-    <a href="/#afiliacion" class="btn btn-gold nav-cta">Afíliate gratis</a>
+    <a href="/afiliate.html" class="btn btn-gold nav-cta">Afíliate gratis</a>
     <button class="menu-toggle" aria-label="Abrir menú">☰</button>
   </div>
   <div class="mobile-nav">
@@ -50,13 +56,17 @@
   <div class="container">
     <div class="grid grid-2">
 
+      <!-- 1. Cuota sindical -->
       <div class="form-card">
-        <h3 style="font-size:1.15rem;margin-bottom:1.25rem">Cuota sindical (2% del SDI)</h3>
+        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Cuota sindical (2% del SDI)</h3>
+        <p class="card-subtitle">Art. 100 de la LFT</p>
         <p class="hint" style="margin-bottom:1rem">Calcula tu cuota sindical ordinaria a partir de tu Salario Diario Integrado (SDI) o salario base.</p>
         <div class="field">
-          <label>SDI / Salario base diario — <strong id="cuota-sdi-val">$0</strong></label>
-          <input type="range" class="slider" id="cuota-sdi-range" min="100" max="3000" step="10" value="100" oninput="syncSlider('cuota-sdi','cuota-sdi-range','cuota-sdi-val','$',calcularCuota)" />
-          <input type="number" id="cuota-sdi" placeholder="o escribe aquí…" oninput="syncNumber('cuota-sdi','cuota-sdi-range','cuota-sdi-val','$',calcularCuota)" />
+          <label>SDI / Salario base diario (MXN)</label>
+          <input type="range" class="slider" min="100" max="3000" step="10" value="450"
+                 oninput="document.getElementById('cuota-sdi').value=this.value;calcularCuota()">
+          <input type="number" id="cuota-sdi" placeholder="Ej. 450"
+                 oninput="this.previousElementSibling.value=this.value||0;calcularCuota()">
         </div>
         <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
           <span style="font-size:.85rem;color:var(--ink-soft)">Cuota sindical (2%)</span>
@@ -64,17 +74,23 @@
         </div>
       </div>
 
+      <!-- 2. Aguinaldo -->
       <div class="form-card">
-        <h3 style="font-size:1.15rem;margin-bottom:1.25rem">Calculadora de aguinaldo</h3>
+        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Calculadora de aguinaldo</h3>
+        <p class="card-subtitle">Art. 87 de la LFT</p>
         <div class="field">
-          <label>Salario mensual (MXN) — <strong id="aguinaldo-salario-val">$0</strong></label>
-          <input type="range" class="slider" id="aguinaldo-salario-range" min="3000" max="80000" step="500" value="3000" oninput="syncSlider('aguinaldo-salario','aguinaldo-salario-range','aguinaldo-salario-val','$',calcularAguinaldo)" />
-          <input type="number" id="aguinaldo-salario" placeholder="o escribe aquí…" oninput="syncNumber('aguinaldo-salario','aguinaldo-salario-range','aguinaldo-salario-val','$',calcularAguinaldo)" />
+          <label>Salario mensual (MXN)</label>
+          <input type="range" class="slider" min="3000" max="100000" step="500" value="12000"
+                 oninput="document.getElementById('aguinaldo-salario').value=this.value;calcularAguinaldo()">
+          <input type="number" id="aguinaldo-salario" placeholder="Ej. 12000"
+                 oninput="this.previousElementSibling.value=this.value||0;calcularAguinaldo()">
         </div>
         <div class="field">
-          <label>Días de aguinaldo (Ley = 15) — <strong id="aguinaldo-dias-val">15</strong></label>
-          <input type="range" class="slider" id="aguinaldo-dias-range" min="15" max="90" step="1" value="15" oninput="syncSlider('aguinaldo-dias','aguinaldo-dias-range','aguinaldo-dias-val','',calcularAguinaldo)" />
-          <input type="number" id="aguinaldo-dias" value="15" oninput="syncNumber('aguinaldo-dias','aguinaldo-dias-range','aguinaldo-dias-val','',calcularAguinaldo)" />
+          <label>Días de aguinaldo (Ley = 15)</label>
+          <input type="range" class="slider" min="15" max="60" step="1" value="15"
+                 oninput="document.getElementById('aguinaldo-dias').value=this.value;calcularAguinaldo()">
+          <input type="number" id="aguinaldo-dias" value="15"
+                 oninput="this.previousElementSibling.value=this.value||15;calcularAguinaldo()">
         </div>
         <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
           <span style="font-size:.85rem;color:var(--ink-soft)">Aguinaldo estimado</span>
@@ -82,17 +98,23 @@
         </div>
       </div>
 
+      <!-- 3. Vacaciones y prima vacacional -->
       <div class="form-card">
-        <h3 style="font-size:1.15rem;margin-bottom:1.25rem">Vacaciones y prima vacacional</h3>
+        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Vacaciones y prima vacacional</h3>
+        <p class="card-subtitle">Art. 76 y 80 de la LFT</p>
         <div class="field">
-          <label>Salario diario (MXN) — <strong id="vac-salario-val">$0</strong></label>
-          <input type="range" class="slider" id="vac-salario-range" min="100" max="3000" step="10" value="100" oninput="syncSlider('vac-salario','vac-salario-range','vac-salario-val','$',calcularVacaciones)" />
-          <input type="number" id="vac-salario" placeholder="o escribe aquí…" oninput="syncNumber('vac-salario','vac-salario-range','vac-salario-val','$',calcularVacaciones)" />
+          <label>Salario diario (MXN)</label>
+          <input type="range" class="slider" min="100" max="3000" step="10" value="400"
+                 oninput="document.getElementById('vac-salario').value=this.value;calcularVacaciones()">
+          <input type="number" id="vac-salario" placeholder="Ej. 400"
+                 oninput="this.previousElementSibling.value=this.value||0;calcularVacaciones()">
         </div>
         <div class="field">
-          <label>Años de antigüedad — <strong id="vac-anios-val">1</strong></label>
-          <input type="range" class="slider" id="vac-anios-range" min="1" max="25" step="1" value="1" oninput="syncSlider('vac-anios','vac-anios-range','vac-anios-val','',calcularVacaciones)" />
-          <input type="number" id="vac-anios" placeholder="o escribe aquí…" oninput="syncNumber('vac-anios','vac-anios-range','vac-anios-val','',calcularVacaciones)" />
+          <label>Años de antigüedad</label>
+          <input type="range" class="slider" min="1" max="30" step="1" value="2"
+                 oninput="document.getElementById('vac-anios').value=this.value;calcularVacaciones()">
+          <input type="number" id="vac-anios" placeholder="Ej. 2"
+                 oninput="this.previousElementSibling.value=this.value||0;calcularVacaciones()">
         </div>
         <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
           <span style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</span>
@@ -100,17 +122,23 @@
         </div>
       </div>
 
+      <!-- 4. Horas extra -->
       <div class="form-card">
-        <h3 style="font-size:1.15rem;margin-bottom:1.25rem">Horas extra</h3>
+        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Horas extra</h3>
+        <p class="card-subtitle">Art. 67 y 68 de la LFT</p>
         <div class="field">
-          <label>Salario diario (MXN) — <strong id="horas-salario-val">$0</strong></label>
-          <input type="range" class="slider" id="horas-salario-range" min="100" max="3000" step="10" value="100" oninput="syncSlider('horas-salario','horas-salario-range','horas-salario-val','$',calcularHorasExtra)" />
-          <input type="number" id="horas-salario" placeholder="o escribe aquí…" oninput="syncNumber('horas-salario','horas-salario-range','horas-salario-val','$',calcularHorasExtra)" />
+          <label>Salario diario (MXN)</label>
+          <input type="range" class="slider" min="100" max="3000" step="10" value="400"
+                 oninput="document.getElementById('horas-salario').value=this.value;calcularHorasExtra()">
+          <input type="number" id="horas-salario" placeholder="Ej. 400"
+                 oninput="this.previousElementSibling.value=this.value||0;calcularHorasExtra()">
         </div>
         <div class="field">
-          <label>Horas extra a la semana — <strong id="horas-cantidad-val">1</strong></label>
-          <input type="range" class="slider" id="horas-cantidad-range" min="1" max="20" step="1" value="1" oninput="syncSlider('horas-cantidad','horas-cantidad-range','horas-cantidad-val','',calcularHorasExtra)" />
-          <input type="number" id="horas-cantidad" placeholder="o escribe aquí…" oninput="syncNumber('horas-cantidad','horas-cantidad-range','horas-cantidad-val','',calcularHorasExtra)" />
+          <label>Horas extra a la semana</label>
+          <input type="range" class="slider" min="1" max="20" step="1" value="6"
+                 oninput="document.getElementById('horas-cantidad').value=this.value;calcularHorasExtra()">
+          <input type="number" id="horas-cantidad" placeholder="Ej. 6"
+                 oninput="this.previousElementSibling.value=this.value||0;calcularHorasExtra()">
         </div>
         <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
           <span style="font-size:.85rem;color:var(--ink-soft)">Pago de horas extra (semana)</span>
@@ -118,17 +146,23 @@
         </div>
       </div>
 
+      <!-- 5. Prima dominical -->
       <div class="form-card">
-        <h3 style="font-size:1.15rem;margin-bottom:1.25rem">Prima dominical</h3>
+        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Prima dominical</h3>
+        <p class="card-subtitle">Art. 71 de la LFT</p>
         <div class="field">
-          <label>Salario diario (MXN) — <strong id="dominical-salario-val">$0</strong></label>
-          <input type="range" class="slider" id="dominical-salario-range" min="100" max="3000" step="10" value="100" oninput="syncSlider('dominical-salario','dominical-salario-range','dominical-salario-val','$',calcularPrimaDominical)" />
-          <input type="number" id="dominical-salario" placeholder="o escribe aquí…" oninput="syncNumber('dominical-salario','dominical-salario-range','dominical-salario-val','$',calcularPrimaDominical)" />
+          <label>Salario diario (MXN)</label>
+          <input type="range" class="slider" min="100" max="3000" step="10" value="400"
+                 oninput="document.getElementById('dominical-salario').value=this.value;calcularPrimaDominical()">
+          <input type="number" id="dominical-salario" placeholder="Ej. 400"
+                 oninput="this.previousElementSibling.value=this.value||0;calcularPrimaDominical()">
         </div>
         <div class="field">
-          <label>Domingos trabajados en el mes — <strong id="dominical-dias-val">1</strong></label>
-          <input type="range" class="slider" id="dominical-dias-range" min="1" max="5" step="1" value="1" oninput="syncSlider('dominical-dias','dominical-dias-range','dominical-dias-val','',calcularPrimaDominical)" />
-          <input type="number" id="dominical-dias" placeholder="o escribe aquí…" oninput="syncNumber('dominical-dias','dominical-dias-range','dominical-dias-val','',calcularPrimaDominical)" />
+          <label>Domingos trabajados en el mes</label>
+          <input type="range" class="slider" min="1" max="5" step="1" value="4"
+                 oninput="document.getElementById('dominical-dias').value=this.value;calcularPrimaDominical()">
+          <input type="number" id="dominical-dias" placeholder="Ej. 4"
+                 oninput="this.previousElementSibling.value=this.value||0;calcularPrimaDominical()">
         </div>
         <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
           <span style="font-size:.85rem;color:var(--ink-soft)">Prima dominical (25%) del mes</span>
@@ -136,22 +170,30 @@
         </div>
       </div>
 
+      <!-- 6. Finiquito -->
       <div class="form-card">
-        <h3 style="font-size:1.15rem;margin-bottom:1.25rem">Calculadora de finiquito</h3>
+        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Calculadora de finiquito</h3>
+        <p class="card-subtitle">Art. 76, 80 y 87 de la LFT</p>
         <div class="field">
-          <label>Salario diario (MXN) — <strong id="finiquito-salario-val">$0</strong></label>
-          <input type="range" class="slider" id="finiquito-salario-range" min="100" max="3000" step="10" value="100" oninput="syncSlider('finiquito-salario','finiquito-salario-range','finiquito-salario-val','$',calcularFiniquito)" />
-          <input type="number" id="finiquito-salario" placeholder="o escribe aquí…" oninput="syncNumber('finiquito-salario','finiquito-salario-range','finiquito-salario-val','$',calcularFiniquito)" />
+          <label>Salario diario (MXN)</label>
+          <input type="range" class="slider" min="100" max="3000" step="10" value="400"
+                 oninput="document.getElementById('finiquito-salario').value=this.value;calcularFiniquito()">
+          <input type="number" id="finiquito-salario" placeholder="Ej. 400"
+                 oninput="this.previousElementSibling.value=this.value||0;calcularFiniquito()">
         </div>
         <div class="field">
-          <label>Días trabajados en el año actual — <strong id="finiquito-dias-val">1</strong></label>
-          <input type="range" class="slider" id="finiquito-dias-range" min="1" max="365" step="1" value="1" oninput="syncSlider('finiquito-dias','finiquito-dias-range','finiquito-dias-val','',calcularFiniquito)" />
-          <input type="number" id="finiquito-dias" placeholder="o escribe aquí…" oninput="syncNumber('finiquito-dias','finiquito-dias-range','finiquito-dias-val','',calcularFiniquito)" />
+          <label>Días trabajados en el año actual</label>
+          <input type="range" class="slider" min="1" max="365" step="1" value="180"
+                 oninput="document.getElementById('finiquito-dias').value=this.value;calcularFiniquito()">
+          <input type="number" id="finiquito-dias" placeholder="Ej. 180"
+                 oninput="this.previousElementSibling.value=this.value||0;calcularFiniquito()">
         </div>
         <div class="field">
-          <label>Años de antigüedad — <strong id="finiquito-anios-val">1</strong></label>
-          <input type="range" class="slider" id="finiquito-anios-range" min="1" max="30" step="1" value="1" oninput="syncSlider('finiquito-anios','finiquito-anios-range','finiquito-anios-val','',calcularFiniquito)" />
-          <input type="number" id="finiquito-anios" placeholder="o escribe aquí…" oninput="syncNumber('finiquito-anios','finiquito-anios-range','finiquito-anios-val','',calcularFiniquito)" />
+          <label>Años de antigüedad</label>
+          <input type="range" class="slider" min="0" max="40" step="1" value="2"
+                 oninput="document.getElementById('finiquito-anios').value=this.value;calcularFiniquito()">
+          <input type="number" id="finiquito-anios" placeholder="Ej. 2"
+                 oninput="this.previousElementSibling.value=this.value||0;calcularFiniquito()">
         </div>
         <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
           <span style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</span>
@@ -159,81 +201,162 @@
         </div>
       </div>
 
-
-        <!-- Calculadora 7: Renuncia Voluntaria -->
-        <div class="form-card">
-          <h3>Renuncia Voluntaria</h3>
-          <p class="card-subtitle">Art. 76, 80, 87 y 162 fracc. III de la LFT</p>
-          <div class="field"><label>Salario mensual bruto ($)</label><input type="number" id="rv-salario" placeholder="Ej. 10000" min="0"></div>
-          <div class="field"><label>Salario mínimo diario ($)</label><input type="number" id="rv-salmin" placeholder="Ej. 248.93" min="0" step="0.01"></div>
-          <div class="field"><label>Fecha de ingreso</label><input type="date" id="rv-ingreso"></div>
-          <div class="field"><label>Fecha de renuncia</label><input type="date" id="rv-renuncia"></div>
-          <div class="field"><label>Días de vacaciones ya tomados este periodo</label><input type="number" id="rv-vacsion" placeholder="0" min="0" value="0"></div>
-          <button class="btn btn-navy" style="width:100%;margin-top:1rem" onclick="calcRenuncia()">Calcular Finiquito</button>
-          <div class="card" id="rv-resultado" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem;display:none">
-            <p style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</p>
-            <div id="rv-detalle" style="margin-top:.5rem;color:var(--ink)">—</div>
-          </div>
-          <p style="font-size:.8rem;color:var(--ink-soft);margin-top:.75rem">Al renunciar voluntariamente te corresponde: aguinaldo proporcional (Art. 87), vacaciones no disfrutadas (Art. 76) y prima vacacional (Art. 80, mín. 25%). La prima de antigüedad solo aplica si tienes 15+ años (Art. 162, fracc. III). No corresponden los 3 meses constitucionales ni los 20 días por año.</p>
+      <!-- 7. Renuncia Voluntaria -->
+      <div class="form-card">
+        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Renuncia Voluntaria</h3>
+        <p class="card-subtitle">Art. 76, 80, 87 y 162 fracc. III de la LFT</p>
+        <div class="field">
+          <label>Salario mensual bruto ($)</label>
+          <input type="range" class="slider" min="3000" max="100000" step="500" value="10000"
+                 oninput="document.getElementById('rv-salario').value=this.value;calcRenuncia()">
+          <input type="number" id="rv-salario" placeholder="Ej. 10000" min="0"
+                 oninput="this.previousElementSibling.value=this.value||0;calcRenuncia()">
         </div>
-
-        <!-- Calculadora 8: Despido Justificado -->
-        <div class="form-card">
-          <h3>Despido Justificado (Art. 47)</h3>
-          <p class="card-subtitle">Solo finiquito — sin indemnización</p>
-          <div class="field"><label>Salario mensual bruto ($)</label><input type="number" id="dj-salario" placeholder="Ej. 10000" min="0"></div>
-          <div class="field"><label>Días de vacaciones ya tomados</label><input type="number" id="dj-vacsion" placeholder="0" min="0" value="0"></div>
-          <div class="field"><label>Fecha de ingreso</label><input type="date" id="dj-ingreso"></div>
-          <div class="field"><label>Fecha de despido</label><input type="date" id="dj-despido"></div>
-          <button class="btn btn-navy" style="width:100%;margin-top:1rem" onclick="calcDespJust()">Calcular Finiquito</button>
-          <div class="card" id="dj-resultado" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem;display:none">
-            <p style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</p>
-            <div id="dj-detalle" style="margin-top:.5rem;color:var(--ink)">—</div>
-          </div>
-          <p style="font-size:.8rem;color:var(--ink-soft);margin-top:.75rem">En caso de despido justificado (Art. 47 LFT), el trabajador solo recibe el finiquito: aguinaldo proporcional, vacaciones no gozadas y prima vacacional. No proceden los 3 meses ni los 20 días.</p>
+        <div class="field">
+          <label>Salario mínimo diario ($)</label>
+          <input type="number" id="rv-salmin" placeholder="Ej. 278.80" min="0" step="0.01">
         </div>
-
-        <!-- Calculadora 9: Indemnización por Despido Injustificado -->
-        <div class="form-card">
-          <h3>Indemnización por Despido Injustificado</h3>
-          <p class="card-subtitle">Art. 48, 50 y 162 de la LFT</p>
-          <div class="field"><label>Salario mensual bruto ($)</label><input type="number" id="di-salario" placeholder="Ej. 10000" min="0"></div>
-          <div class="field"><label>Años completos trabajados</label><input type="number" id="di-anios" placeholder="Ej. 3" min="0"></div>
-          <div class="field"><label>Meses adicionales (fracción)</label><input type="number" id="di-meses" placeholder="0" min="0" max="11" value="0"></div>
-          <div class="field"><label>Salario mínimo diario vigente ($)</label><input type="number" id="di-salmin" placeholder="Ej. 248.93" min="0" step="0.01"></div>
-          <button class="btn btn-navy" style="width:100%;margin-top:1rem" onclick="calcLiquidacion()">Calcular Liquidación</button>
-          <div class="card" id="di-resultado" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem;display:none">
-            <p style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</p>
-            <div id="di-detalle" style="margin-top:.5rem;color:var(--ink)">—</div>
-          </div>
-          <p style="font-size:.8rem;color:var(--ink-soft);margin-top:.75rem">Incluye: 3 meses de salario (Art. 48), 20 días por año trabajado (Art. 50) y prima de antigüedad a razón del salario mínimo (Art. 162).</p>
+        <div class="field">
+          <label>Fecha de ingreso</label>
+          <input type="date" id="rv-ingreso" oninput="calcRenuncia()">
         </div>
+        <div class="field">
+          <label>Fecha de renuncia</label>
+          <input type="date" id="rv-renuncia" oninput="calcRenuncia()">
+        </div>
+        <div class="field">
+          <label>Días de vacaciones ya tomados este periodo</label>
+          <input type="range" class="slider" min="0" max="30" step="1" value="0"
+                 oninput="document.getElementById('rv-vacsion').value=this.value;calcRenuncia()">
+          <input type="number" id="rv-vacsion" placeholder="0" min="0" value="0"
+                 oninput="this.previousElementSibling.value=this.value||0;calcRenuncia()">
+        </div>
+        <button class="btn btn-navy" style="width:100%;margin-top:1rem" onclick="calcRenuncia()">Calcular Finiquito</button>
+        <div class="card" id="rv-resultado" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem;display:none">
+          <p style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</p>
+          <div id="rv-detalle" style="margin-top:.5rem;color:var(--ink)">—</div>
+        </div>
+        <p style="font-size:.8rem;color:var(--ink-soft);margin-top:.75rem">Al renunciar voluntariamente no tienes derecho a indemnización, solo a tu finiquito: partes proporcionales de aguinaldo, vacaciones y prima vacacional.</p>
+      </div>
+
+      <!-- 8. Despido Justificado -->
+      <div class="form-card">
+        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Despido Justificado (Art. 47)</h3>
+        <p class="card-subtitle">Solo finiquito — sin indemnización por ley</p>
+        <div class="field">
+          <label>Salario mensual bruto ($)</label>
+          <input type="range" class="slider" min="3000" max="100000" step="500" value="10000"
+                 oninput="document.getElementById('dj-salario').value=this.value;calcDespJust()">
+          <input type="number" id="dj-salario" placeholder="Ej. 10000" min="0"
+                 oninput="this.previousElementSibling.value=this.value||0;calcDespJust()">
+        </div>
+        <div class="field">
+          <label>Días de vacaciones ya tomados</label>
+          <input type="range" class="slider" min="0" max="30" step="1" value="0"
+                 oninput="document.getElementById('dj-vacsion').value=this.value;calcDespJust()">
+          <input type="number" id="dj-vacsion" placeholder="0" min="0" value="0"
+                 oninput="this.previousElementSibling.value=this.value||0;calcDespJust()">
+        </div>
+        <div class="field">
+          <label>Fecha de ingreso</label>
+          <input type="date" id="dj-ingreso" oninput="calcDespJust()">
+        </div>
+        <div class="field">
+          <label>Fecha de despido</label>
+          <input type="date" id="dj-despido" oninput="calcDespJust()">
+        </div>
+        <button class="btn btn-navy" style="width:100%;margin-top:1rem" onclick="calcDespJust()">Calcular Finiquito</button>
+        <div class="card" id="dj-resultado" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem;display:none">
+          <p style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</p>
+          <div id="dj-detalle" style="margin-top:.5rem;color:var(--ink)">—</div>
+        </div>
+        <p style="font-size:.8rem;color:var(--ink-soft);margin-top:.75rem">En caso de despido justificado por alguna de las causas del Art. 47 LFT, el patrón no está obligado a pagar indemnización, solo el finiquito correspondiente.</p>
+      </div>
+
+      <!-- 9. Indemnización por Despido Injustificado -->
+      <div class="form-card">
+        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Indemnización por Despido Injustificado</h3>
+        <p class="card-subtitle">Art. 48, 50 y 162 de la LFT</p>
+        <div class="field">
+          <label>Salario mensual bruto ($)</label>
+          <input type="range" class="slider" min="3000" max="100000" step="500" value="10000"
+                 oninput="document.getElementById('di-salario').value=this.value;calcLiquidacion()">
+          <input type="number" id="di-salario" placeholder="Ej. 10000" min="0"
+                 oninput="this.previousElementSibling.value=this.value||0;calcLiquidacion()">
+        </div>
+        <div class="field">
+          <label>Años completos trabajados</label>
+          <input type="range" class="slider" min="0" max="40" step="1" value="3"
+                 oninput="document.getElementById('di-anios').value=this.value;calcLiquidacion()">
+          <input type="number" id="di-anios" placeholder="Ej. 3" min="0"
+                 oninput="this.previousElementSibling.value=this.value||0;calcLiquidacion()">
+        </div>
+        <div class="field">
+          <label>Meses adicionales (fracción del año)</label>
+          <input type="range" class="slider" min="0" max="11" step="1" value="0"
+                 oninput="document.getElementById('di-meses').value=this.value;calcLiquidacion()">
+          <input type="number" id="di-meses" placeholder="0" min="0" max="11" value="0"
+                 oninput="this.previousElementSibling.value=this.value||0;calcLiquidacion()">
+        </div>
+        <div class="field">
+          <label>Salario mínimo diario vigente ($)</label>
+          <input type="number" id="di-salmin" placeholder="Ej. 278.80" min="0" step="0.01">
+        </div>
+        <button class="btn btn-navy" style="width:100%;margin-top:1rem" onclick="calcLiquidacion()">Calcular Liquidación</button>
+        <div class="card" id="di-resultado" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem;display:none">
+          <p style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</p>
+          <div id="di-detalle" style="margin-top:.5rem;color:var(--ink)">—</div>
+        </div>
+        <p style="font-size:.8rem;color:var(--ink-soft);margin-top:.75rem">Incluye: 3 meses de salario (Art. 50), 20 días por año trabajado y prima de antigüedad de 12 días por año. Aplica tope de 25 veces el salario mínimo diario para la parte variable.</p>
+      </div>
 
     </div>
 
+    <!-- CTA Card -->
     <div class="card" style="background:var(--gold-bright);border:none;margin-top:2rem;border-radius:1rem;padding:2rem">
       <h2 style="color:var(--navy);margin-top:0">¿Te deben prestaciones o te despidieron?</h2>
-      <p style="color:var(--navy)">Como <strong>afiliado al sindicato</strong>, te brindamos asesoría laboral gratuita, acompañamiento legal y representación ante tu patrón para que recibas lo que te corresponde por ley. No estás solo.</p>
+      <p style="color:var(--navy)">Como <strong>afiliado al sindicato</strong>, te brindamos asesoría laboral personalizada sin costo. Nuestros representantes te acompañan en cada paso.</p>
       <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem">
-        <a href="/#afiliacion" class="btn btn-navy">Afíliate gratis</a>
-        <a href="/#contacto" class="btn" style="background:white;color:var(--navy);border:2px solid var(--navy)">Contáctanos por WhatsApp</a>
+        <a href="/afiliate.html" class="btn btn-navy">Afíliate gratis</a>
+        <a href="https://wa.me/526641234567" target="_blank" rel="noopener" class="btn"
+           style="background:#25D366;color:white;border:2px solid #25D366">Contáctanos por WhatsApp</a>
       </div>
     </div>
 
+    <!-- Recursos oficiales -->
     <div class="card" style="margin-top:2rem;padding:2rem">
       <h2 style="color:var(--navy);margin-top:0;font-weight:700">Recursos oficiales para el trabajador</h2>
       <p style="color:var(--ink-soft)">Instituciones del Gobierno de México que te pueden ayudar</p>
       <div class="grid grid-2" style="margin-top:1.5rem">
-        <div class="card" style="margin-top:0"><strong>PROFEDET</strong><p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Asesoría y representación legal gratuita en materia laboral</p></div>
-        <div class="card" style="margin-top:0"><strong>CONASAMI</strong><p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Consulta salarios mínimos generales y profesionales vigentes</p></div>
-        <div class="card" style="margin-top:0"><strong>Centro de Conciliación Laboral</strong><p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Conciliación obligatoria previa a juicio laboral</p></div>
-        <div class="card" style="margin-top:0"><strong>IMSS — Trámites</strong><p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Alta, semanas cotizadas, clínica asignada y más</p></div>
-        <div class="card" style="margin-top:0"><strong>INFONAVIT</strong><p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Consulta tu saldo, puntos y opciones de crédito</p></div>
-        <div class="card" style="margin-top:0"><strong>CONSAR — Mi Afore</strong><p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Localiza tu Afore, consulta saldo y rendimientos</p></div>
+        <div class="card" style="margin-top:0">
+          <strong>PROFEDET</strong>
+          <p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Asesoría y representación legal gratuita en materia laboral ante la autoridad conciliadora.</p>
+        </div>
+        <div class="card" style="margin-top:0">
+          <strong>CONASAMI</strong>
+          <p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Comisión Nacional de Salarios Mínimos. Consulta el salario mínimo vigente en tu zona.</p>
+        </div>
+        <div class="card" style="margin-top:0">
+          <strong>Centro de Conciliación Laboral</strong>
+          <p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Instancia federal para resolver conflictos individuales de trabajo de manera gratuita y ágil.</p>
+        </div>
+        <div class="card" style="margin-top:0">
+          <strong>IMSS — Trámites</strong>
+          <p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Verifica tu historial de cotización, semanas cotizadas y datos de seguridad social.</p>
+        </div>
+        <div class="card" style="margin-top:0">
+          <strong>INFONAVIT</strong>
+          <p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Consulta el saldo de tu subcuenta de vivienda y trámites de crédito habitacional.</p>
+        </div>
+        <div class="card" style="margin-top:0">
+          <strong>CONSAR — Mi Afore</strong>
+          <p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Conoce tu Afore, el saldo de tu cuenta individual y gestiona tu ahorro para el retiro.</p>
+        </div>
       </div>
     </div>
 
     <p style="text-align:center;color:var(--ink-soft);font-size:.875rem;margin-top:2rem">Las calculadoras son herramientas informativas basadas en la Ley Federal del Trabajo vigente. Los resultados son estimados y no constituyen asesoría legal. Para tu caso específico, acude a la <strong>PROFEDET</strong>, al <strong>Centro de Conciliación Laboral</strong> o <strong>afíliate al sindicato</strong> para recibir orientación personalizada.</p>
+
   </div>
 </section>
 
@@ -246,13 +369,98 @@
 
 <script src="/js/main.js?v=3"></script>
 <script>
-function vacDias(a){if(a<1)return 0;if(a<2)return 12;if(a<3)return 14;if(a<4)return 16;if(a<5)return 18;return 20+2*Math.floor((a-5)/5);}
-function fmtMXN(v){return'$'+v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');}
-function desglose(items,total){return'<div style="display:grid;gap:.4rem;font-size:.9rem">'+items.map(function(x){return'<div style="display:flex;justify-content:space-between"><span>'+x[0]+'</span><strong>'+fmtMXN(x[1])+'</strong></div>';}).join('')+'<hr style="border-color:rgba(227,179,65,.35);margin:.4rem 0"><div style="display:flex;justify-content:space-between"><span><strong>Total estimado</strong></span><strong style="color:var(--gold-bright)">'+fmtMXN(total)+'</strong></div></div>';}
-function calcFiniquito(salario,vacTomadas,ingreso,fecha){var sd=salario/30.4;var a=new Date(ingreso);a.setFullYear(fecha.getFullYear());if(a>fecha)a.setFullYear(fecha.getFullYear()-1);var dias=Math.round((fecha-a)/864e5);var años=Math.floor((fecha-ingreso)/(365.25*864e5));var ag=15*sd*(dias/365);var vc=vacDias(años+1)*(dias/365);var vp=Math.max(0,vc-vacTomadas);var pv=vp*sd;var prc=pv*0.25;return{sd:sd,años:años,dias:dias,ag:ag,pv:pv,vp:vp,prc:prc};}
-function calcRenuncia(){var sal=parseFloat(document.getElementById('rv-salario').value)||0;var sm=parseFloat(document.getElementById('rv-salmin').value)||0;var ing=new Date(document.getElementById('rv-ingreso').value+'T12:00:00');var ren=new Date(document.getElementById('rv-renuncia').value+'T12:00:00');var vt=parseFloat(document.getElementById('rv-vacsion').value)||0;if(!sal||isNaN(ing.getTime())||isNaN(ren.getTime()))return;var r=calcFiniquito(sal,vt,ing,ren);var pa=r.años>=15&&sm>0?12*r.años*sm:0;var items=[['Aguinaldo proporcional',r.ag],['Vacaciones ('+r.vp.toFixed(1)+' días)',r.pv],['Prima vacacional (25%)',r.prc]];if(pa>0)items.push(['Prima de antigüedad (Art. 162)',pa]);var t=r.ag+r.pv+r.prc+pa;document.getElementById('rv-detalle').innerHTML=desglose(items,t);document.getElementById('rv-resultado').style.display='block';}
-function calcDespJust(){var sal=parseFloat(document.getElementById('dj-salario').value)||0;var ing=new Date(document.getElementById('dj-ingreso').value+'T12:00:00');var dep=new Date(document.getElementById('dj-despido').value+'T12:00:00');var vt=parseFloat(document.getElementById('dj-vacsion').value)||0;if(!sal||isNaN(ing.getTime())||isNaN(dep.getTime()))return;var r=calcFiniquito(sal,vt,ing,dep);var items=[['Aguinaldo proporcional',r.ag],['Vacaciones ('+r.vp.toFixed(1)+' días)',r.pv],['Prima vacacional (25%)',r.prc]];var t=r.ag+r.pv+r.prc;document.getElementById('dj-detalle').innerHTML=desglose(items,t);document.getElementById('dj-resultado').style.display='block';}
-function calcLiquidacion(){var sal=parseFloat(document.getElementById('di-salario').value)||0;var anios=parseFloat(document.getElementById('di-anios').value)||0;var meses=parseFloat(document.getElementById('di-meses').value)||0;var sm=parseFloat(document.getElementById('di-salmin').value)||0;if(!sal)return;var sd=sal/30.4;var ta=anios+(meses/12);var con=90*sd;var vd=20*ta*sd;var pa=sm>0?12*ta*sm:0;var items=[['3 meses constitucionales (Art. 48)',con],['20 días × año (Art. 50)',vd]];if(pa>0)items.push(['Prima de antigüedad (Art. 162)',pa]);var t=con+vd+pa;document.getElementById('di-detalle').innerHTML=desglose(items,t);document.getElementById('di-resultado').style.display='block';}
+// ===== Helpers para nuevas calculadoras =====
+function _vacDias(a){
+  if(a<1)return 0;if(a<2)return 12;if(a<3)return 14;if(a<4)return 16;if(a<5)return 18;
+  return 20+2*Math.floor((a-5)/5);
+}
+function _fmtMXN(v){
+  return '$'+v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+}
+function _calcFiniquitoBase(salarioMensual,vacTomadas,ingreso,salida){
+  var salDiario=salarioMensual/30;
+  var diasTotal=(salida-ingreso)/86400000;
+  var anios=diasTotal/365;
+  // Último aniversario
+  var ultAniv=new Date(ingreso);
+  ultAniv.setFullYear(salida.getFullYear());
+  if(ultAniv>salida)ultAniv.setFullYear(salida.getFullYear()-1);
+  var diasEsteAnio=(salida-ultAniv)/86400000;
+  var aguinaldo=(salDiario*15)*(diasEsteAnio/365);
+  var diasVacCorr=_vacDias(Math.floor(anios));
+  var vacPropDias=diasVacCorr*(diasEsteAnio/365)-Math.max(0,vacTomadas);
+  var vacPago=Math.max(0,vacPropDias)*salDiario;
+  var primaVac=vacPago*0.25;
+  return{salDiario:salDiario,diasEsteAnio:Math.round(diasEsteAnio),aguinaldo:aguinaldo,vacPago:vacPago,primaVac:primaVac};
+}
+
+// ===== Calculadora 7: Renuncia Voluntaria =====
+function calcRenuncia(){
+  var salario=parseFloat(document.getElementById('rv-salario').value)||0;
+  var vacTomadas=parseFloat(document.getElementById('rv-vacsion').value)||0;
+  var ingreso=new Date(document.getElementById('rv-ingreso').value);
+  var renuncia=new Date(document.getElementById('rv-renuncia').value);
+  var res=document.getElementById('rv-resultado');
+  if(!salario||isNaN(ingreso.getTime())||isNaN(renuncia.getTime())||renuncia<=ingreso){res.style.display='none';return;}
+  var d=_calcFiniquitoBase(salario,vacTomadas,ingreso,renuncia);
+  var total=d.aguinaldo+d.vacPago+d.primaVac;
+  document.getElementById('rv-detalle').innerHTML=
+    '<div style="display:flex;flex-direction:column;gap:.3rem;font-size:.9rem">'+
+    '<span>Días trabajados este periodo: '+d.diasEsteAnio+'</span>'+
+    '<span>Aguinaldo proporcional: '+_fmtMXN(d.aguinaldo)+'</span>'+
+    '<span>Vacaciones proporcionales: '+_fmtMXN(d.vacPago)+'</span>'+
+    '<span>Prima vacacional (25%): '+_fmtMXN(d.primaVac)+'</span>'+
+    '<strong style="color:var(--navy-deep);font-size:1.1rem;margin-top:.5rem">Total finiquito estimado: '+_fmtMXN(total)+' MXN</strong>'+
+    '</div>';
+  res.style.display='block';
+}
+
+// ===== Calculadora 8: Despido Justificado =====
+function calcDespJust(){
+  var salario=parseFloat(document.getElementById('dj-salario').value)||0;
+  var vacTomadas=parseFloat(document.getElementById('dj-vacsion').value)||0;
+  var ingreso=new Date(document.getElementById('dj-ingreso').value);
+  var despido=new Date(document.getElementById('dj-despido').value);
+  var res=document.getElementById('dj-resultado');
+  if(!salario||isNaN(ingreso.getTime())||isNaN(despido.getTime())||despido<=ingreso){res.style.display='none';return;}
+  var d=_calcFiniquitoBase(salario,vacTomadas,ingreso,despido);
+  var total=d.aguinaldo+d.vacPago+d.primaVac;
+  document.getElementById('dj-detalle').innerHTML=
+    '<div style="display:flex;flex-direction:column;gap:.3rem;font-size:.9rem">'+
+    '<span>Días trabajados este periodo: '+d.diasEsteAnio+'</span>'+
+    '<span>Aguinaldo proporcional: '+_fmtMXN(d.aguinaldo)+'</span>'+
+    '<span>Vacaciones proporcionales: '+_fmtMXN(d.vacPago)+'</span>'+
+    '<span>Prima vacacional (25%): '+_fmtMXN(d.primaVac)+'</span>'+
+    '<strong style="color:var(--navy-deep);font-size:1.1rem;margin-top:.5rem">Total finiquito estimado: '+_fmtMXN(total)+' MXN</strong>'+
+    '</div>';
+  res.style.display='block';
+}
+
+// ===== Calculadora 9: Despido Injustificado (liquidación) =====
+function calcLiquidacion(){
+  var salario=parseFloat(document.getElementById('di-salario').value)||0;
+  var anios=parseFloat(document.getElementById('di-anios').value)||0;
+  var meses=parseFloat(document.getElementById('di-meses').value)||0;
+  var salmin=parseFloat(document.getElementById('di-salmin').value)||0;
+  var res=document.getElementById('di-resultado');
+  if(!salario){res.style.display='none';return;}
+  var salDiario=salario/30;
+  var aniosTotal=anios+(meses/12);
+  var tope=salmin>0?25*salmin:salDiario;
+  var salTopado=Math.min(salDiario,tope);
+  var tresMeses=salDiario*90;
+  var veinteDias=salTopado*20*aniosTotal;
+  var primAntig=Math.min(salDiario,2*tope)*12*aniosTotal;
+  var total=tresMeses+veinteDias+primAntig;
+  document.getElementById('di-detalle').innerHTML=
+    '<div style="display:flex;flex-direction:column;gap:.3rem;font-size:.9rem">'+
+    '<span>3 meses de salario (Art. 50): '+_fmtMXN(tresMeses)+'</span>'+
+    '<span>20 días × año ('+aniosTotal.toFixed(1)+' años): '+_fmtMXN(veinteDias)+'</span>'+
+    '<span>Prima de antigüedad (12 días × año): '+_fmtMXN(primAntig)+'</span>'+
+    '<strong style="color:var(--navy-deep);font-size:1.1rem;margin-top:.5rem">Total liquidación estimada: '+_fmtMXN(total)+' MXN</strong>'+
+    '</div>';
+  res.style.display='block';
+}
 </script>
 </body>
 </html>
