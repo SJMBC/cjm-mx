@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Afíliate | Confederación Joven de México</title>
+<meta name="theme-color" content="#1a3050" />
+<link rel="icon" href="/img/logo.png" type="image/png" />
+<link rel="stylesheet" href="/css/main.css?v=6" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">
+      <img src="/img/logo.png" alt="CJM" class="logo-mark">
+      <span class="logo-text"><strong>Confederación Joven de México</strong><span>Baja California</span></span>
+    </a>
+    <nav class="nav">
+      <a href="/#quienes-somos">Quiénes Somos</a>
+      <a href="/#derechos">Derechos</a>
+      <a href="/#beneficios">Beneficios</a>
+      <a href="/comunicados.html">Comunicados</a>
+      <a href="/calculadoras.html">Calculadoras</a>
+      <a href="/#contacto">Contacto</a>
+    </nav>
+    <a href="/afiliate.html" class="btn btn-gold nav-cta">Afíliate gratis</a>
+    <button class="menu-toggle" aria-label="Abrir menú">☰</button>
+  </div>
+  <div class="mobile-nav">
+    <a href="/#quienes-somos">Quiénes Somos</a>
+    <a href="/#derechos">Derechos</a>
+    <a href="/#beneficios">Beneficios</a>
+    <a href="/comunicados.html">Comunicados</a>
+    <a href="/calculadoras.html">Calculadoras</a>
+    <a href="/#contacto">Contacto</a>
+  </div>
+</header>
+
+<section class="hero" style="padding:3.5rem 0">
+  <div class="container">
+    <a href="/" style="color:rgba(255,255,255,.6);font-size:.85rem">← Volver al inicio</a>
+    <span class="eyebrow" style="margin-top:1rem;display:inline-flex">Afiliación Baja California</span>
+    <h1 style="font-size:2.2rem;margin-top:.75rem">Afíliate gratis a la Confederación Joven de México</h1>
+    <p class="lead">Protección laboral inmediata, asesoría legal gratuita y acceso a una comunidad de más de 100,000 trabajadores.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width:680px">
+
+    <div class="steps">
+      <span class="step-pill">1. Datos personales</span>
+      <span class="step-pill">2. Datos laborales</span>
+      <span class="step-pill">3. Documentos</span>
+      <span class="step-pill">4. Estatutos y firma</span>
+    </div>
+
+    <form data-affiliation-form data-success-target="#exito-nacional" class="form-card">
+      <h3 style="font-size:1.1rem;margin-bottom:1.25rem">Información personal</h3>
+      <div class="grid grid-2">
+        <div class="field"><label>Nombre completo *</label><input type="text" required placeholder="Nombre y apellidos" /></div>
+        <div class="field"><label>CURP *</label><input type="text" required maxlength="18" placeholder="18 caracteres" /></div>
+        <div class="field"><label>Correo electrónico *</label><input type="email" required placeholder="tucorreo@ejemplo.com" /></div>
+        <div class="field"><label>Teléfono *</label><input type="tel" required placeholder="10 dígitos" /></div>
+        <div class="field"><label>Fecha de nacimiento *</label><input type="date" required /></div>
+        <div class="field">
+          <label>Municipio en Baja California *</label>
+          <select required>
+            <option value="">Elige tu municipio…</option>
+            <option value="tijuana">Tijuana</option>
+            <option value="mexicali">Mexicali</option>
+            <option value="ensenada">Ensenada</option>
+            <option value="tecate">Tecate</option>
+            <option value="rosarito">Playas de Rosarito</option>
+          </select>
+        </div>
+      </div>
+
+      <h3 style="font-size:1.1rem;margin:1.5rem 0 1.25rem">Información laboral</h3>
+      <div class="grid grid-2">
+        <div class="field"><label>Empresa donde trabajas *</label><input type="text" required /></div>
+        <div class="field"><label>Puesto *</label><input type="text" required /></div>
+        <div class="field" style="grid-column:1/-1"><label>Dirección del centro de trabajo</label><input type="text" /></div>
+      </div>
+
+      <h3 style="font-size:1.1rem;margin:1.5rem 0 1.25rem">Documentos</h3>
+      <div class="grid grid-2">
+        <div class="field"><label>INE (frente y reverso) *</label><input type="file" required accept="image/*,.pdf" multiple /></div>
+        <div class="field"><label>Selfie *</label><input type="file" required accept="image/*" /></div>
+        <div class="field" style="grid-column:1/-1"><label>Recibo de nómina más reciente *</label><input type="file" required accept="image/*,.pdf" /></div>
+      </div>
+
+      <div class="field" style="margin-top:1.5rem">
+        <label class="field-check"><input type="checkbox" required /> He leído y acepto los estatutos de la Confederación Joven de México y autorizo el tratamiento de mis datos personales conforme al aviso de privacidad.</label>
+      </div>
+
+      <button type="submit" class="btn btn-gold" style="width:100%;margin-top:1rem">Enviar solicitud de afiliación</button>
+      <p class="hint" style="text-align:center;margin-top:.75rem">La afiliación es 100% gratuita. Un asesor te contactará en menos de 48 horas.</p>
+    </form>
+
+    <div id="exito-nacional" class="form-success">
+      <div class="card" style="text-align:center">
+        <div class="icon-tile gold" style="margin:0 auto 1rem">✓</div>
+        <h3>¡Solicitud enviada!</h3>
+        <p style="color:var(--ink-soft);margin-top:.75rem">Gracias por afiliarte a la Confederación Joven de México. Un asesor revisará tu información y se pondrá en contacto contigo muy pronto.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-bottom" style="border-top:none;margin-top:0;padding-top:0">
+    <span>© 2026 Confederación Joven de México — Baja California.</span>
+    <a href="/" style="color:var(--gold-bright)">Volver al inicio</a>
+  </div>
+</footer>
+
+<script src="/js/main.js?v=3"></script>
+</body>
+</html>

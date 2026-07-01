@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Calculadoras laborales | Confederación Joven de México</title>
+<meta name="theme-color" content="#1a3050" />
+<link rel="icon" href="/img/logo.png" type="image/png" />
+<link rel="stylesheet" href="/css/main.css?v=6" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">
+      <img src="/img/logo.png" alt="CJM" class="logo-mark">
+      <span class="logo-text"><strong>Confederación Joven de México</strong><span>Baja California</span></span>
+    </a>
+    <nav class="nav">
+      <a href="/#quienes-somos">Quiénes Somos</a>
+      <a href="/#derechos">Derechos</a>
+      <a href="/#beneficios">Beneficios</a>
+      <a href="/comunicados.html">Comunicados</a>
+      <a href="/calculadoras.html" style="color:var(--gold-bright)">Calculadoras</a>
+      <a href="/#contacto">Contacto</a>
+    </nav>
+    <a href="/#afiliacion" class="btn btn-gold nav-cta">Afíliate gratis</a>
+    <button class="menu-toggle" aria-label="Abrir menú">☰</button>
+  </div>
+  <div class="mobile-nav">
+    <a href="/#quienes-somos">Quiénes Somos</a>
+    <a href="/#derechos">Derechos</a>
+    <a href="/#beneficios">Beneficios</a>
+    <a href="/comunicados.html">Comunicados</a>
+    <a href="/calculadoras.html">Calculadoras</a>
+    <a href="/#contacto">Contacto</a>
+  </div>
+</header>
+
+<section class="hero" style="padding:3.5rem 0">
+  <div class="container">
+    <a href="/" style="color:rgba(255,255,255,.6);font-size:.85rem">← Volver al inicio</a>
+    <span class="eyebrow" style="margin-top:1rem;display:inline-flex">Herramientas</span>
+    <h1 style="font-size:2.2rem;margin-top:.75rem">Calculadoras laborales</h1>
+    <p class="lead">Estimaciones rápidas de aguinaldo y finiquito. Estas herramientas son orientativas; consulta a un asesor del sindicato para tu caso específico.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2">
+
+      <div class="form-card">
+        <h3 style="font-size:1.15rem;margin-bottom:1.25rem">Cuota sindical (2% del SDI)</h3>
+        <p class="hint" style="margin-bottom:1rem">Calcula tu cuota sindical ordinaria a partir de tu Salario Diario Integrado (SDI) o salario base.</p>
+        <div class="field">
+          <label>SDI / Salario base diario — <strong id="cuota-sdi-val">$0</strong></label>
+          <input type="range" class="slider" id="cuota-sdi-range" min="100" max="3000" step="10" value="100" oninput="syncSlider('cuota-sdi','cuota-sdi-range','cuota-sdi-val','$',calcularCuota)" />
+          <input type="number" id="cuota-sdi" placeholder="o escribe aquí…" oninput="syncNumber('cuota-sdi','cuota-sdi-range','cuota-sdi-val','$',calcularCuota)" />
+        </div>
+        <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
+          <span style="font-size:.85rem;color:var(--ink-soft)">Cuota sindical (2%)</span>
+          <div id="cuota-resultado" style="margin-top:.5rem;color:var(--ink)">—</div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3 style="font-size:1.15rem;margin-bottom:1.25rem">Calculadora de aguinaldo</h3>
+        <div class="field">
+          <label>Salario mensual (MXN) — <strong id="aguinaldo-salario-val">$0</strong></label>
+          <input type="range" class="slider" id="aguinaldo-salario-range" min="3000" max="80000" step="500" value="3000" oninput="syncSlider('aguinaldo-salario','aguinaldo-salario-range','aguinaldo-salario-val','$',calcularAguinaldo)" />
+          <input type="number" id="aguinaldo-salario" placeholder="o escribe aquí…" oninput="syncNumber('aguinaldo-salario','aguinaldo-salario-range','aguinaldo-salario-val','$',calcularAguinaldo)" />
+        </div>
+        <div class="field">
+          <label>Días de aguinaldo (Ley = 15) — <strong id="aguinaldo-dias-val">15</strong></label>
+          <input type="range" class="slider" id="aguinaldo-dias-range" min="15" max="90" step="1" value="15" oninput="syncSlider('aguinaldo-dias','aguinaldo-dias-range','aguinaldo-dias-val','',calcularAguinaldo)" />
+          <input type="number" id="aguinaldo-dias" value="15" oninput="syncNumber('aguinaldo-dias','aguinaldo-dias-range','aguinaldo-dias-val','',calcularAguinaldo)" />
+        </div>
+        <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
+          <span style="font-size:.85rem;color:var(--ink-soft)">Aguinaldo estimado</span>
+          <div id="aguinaldo-resultado" style="font-size:1.4rem;font-weight:700;color:var(--navy-deep);margin-top:.3rem">—</div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3 style="font-size:1.15rem;margin-bottom:1.25rem">Vacaciones y prima vacacional</h3>
+        <div class="field">
+          <label>Salario diario (MXN) — <strong id="vac-salario-val">$0</strong></label>
+          <input type="range" class="slider" id="vac-salario-range" min="100" max="3000" step="10" value="100" oninput="syncSlider('vac-salario','vac-salario-range','vac-salario-val','$',calcularVacaciones)" />
+          <input type="number" id="vac-salario" placeholder="o escribe aquí…" oninput="syncNumber('vac-salario','vac-salario-range','vac-salario-val','$',calcularVacaciones)" />
+        </div>
+        <div class="field">
+          <label>Años de antigüedad — <strong id="vac-anios-val">1</strong></label>
+          <input type="range" class="slider" id="vac-anios-range" min="1" max="25" step="1" value="1" oninput="syncSlider('vac-anios','vac-anios-range','vac-anios-val','',calcularVacaciones)" />
+          <input type="number" id="vac-anios" placeholder="o escribe aquí…" oninput="syncNumber('vac-anios','vac-anios-range','vac-anios-val','',calcularVacaciones)" />
+        </div>
+        <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
+          <span style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</span>
+          <div id="vac-resultado" style="margin-top:.5rem;color:var(--ink)">—</div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3 style="font-size:1.15rem;margin-bottom:1.25rem">Horas extra</h3>
+        <div class="field">
+          <label>Salario diario (MXN) — <strong id="horas-salario-val">$0</strong></label>
+          <input type="range" class="slider" id="horas-salario-range" min="100" max="3000" step="10" value="100" oninput="syncSlider('horas-salario','horas-salario-range','horas-salario-val','$',calcularHorasExtra)" />
+          <input type="number" id="horas-salario" placeholder="o escribe aquí…" oninput="syncNumber('horas-salario','horas-salario-range','horas-salario-val','$',calcularHorasExtra)" />
+        </div>
+        <div class="field">
+          <label>Horas extra a la semana — <strong id="horas-cantidad-val">1</strong></label>
+          <input type="range" class="slider" id="horas-cantidad-range" min="1" max="20" step="1" value="1" oninput="syncSlider('horas-cantidad','horas-cantidad-range','horas-cantidad-val','',calcularHorasExtra)" />
+          <input type="number" id="horas-cantidad" placeholder="o escribe aquí…" oninput="syncNumber('horas-cantidad','horas-cantidad-range','horas-cantidad-val','',calcularHorasExtra)" />
+        </div>
+        <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
+          <span style="font-size:.85rem;color:var(--ink-soft)">Pago de horas extra (semana)</span>
+          <div id="horas-resultado" style="margin-top:.5rem;color:var(--ink)">—</div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3 style="font-size:1.15rem;margin-bottom:1.25rem">Prima dominical</h3>
+        <div class="field">
+          <label>Salario diario (MXN) — <strong id="dominical-salario-val">$0</strong></label>
+          <input type="range" class="slider" id="dominical-salario-range" min="100" max="3000" step="10" value="100" oninput="syncSlider('dominical-salario','dominical-salario-range','dominical-salario-val','$',calcularPrimaDominical)" />
+          <input type="number" id="dominical-salario" placeholder="o escribe aquí…" oninput="syncNumber('dominical-salario','dominical-salario-range','dominical-salario-val','$',calcularPrimaDominical)" />
+        </div>
+        <div class="field">
+          <label>Domingos trabajados en el mes — <strong id="dominical-dias-val">1</strong></label>
+          <input type="range" class="slider" id="dominical-dias-range" min="1" max="5" step="1" value="1" oninput="syncSlider('dominical-dias','dominical-dias-range','dominical-dias-val','',calcularPrimaDominical)" />
+          <input type="number" id="dominical-dias" placeholder="o escribe aquí…" oninput="syncNumber('dominical-dias','dominical-dias-range','dominical-dias-val','',calcularPrimaDominical)" />
+        </div>
+        <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
+          <span style="font-size:.85rem;color:var(--ink-soft)">Prima dominical (25%) del mes</span>
+          <div id="dominical-resultado" style="font-size:1.4rem;font-weight:700;color:var(--navy-deep);margin-top:.3rem">—</div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3 style="font-size:1.15rem;margin-bottom:1.25rem">Calculadora de finiquito</h3>
+        <div class="field">
+          <label>Salario diario (MXN) — <strong id="finiquito-salario-val">$0</strong></label>
+          <input type="range" class="slider" id="finiquito-salario-range" min="100" max="3000" step="10" value="100" oninput="syncSlider('finiquito-salario','finiquito-salario-range','finiquito-salario-val','$',calcularFiniquito)" />
+          <input type="number" id="finiquito-salario" placeholder="o escribe aquí…" oninput="syncNumber('finiquito-salario','finiquito-salario-range','finiquito-salario-val','$',calcularFiniquito)" />
+        </div>
+        <div class="field">
+          <label>Días trabajados en el año actual — <strong id="finiquito-dias-val">1</strong></label>
+          <input type="range" class="slider" id="finiquito-dias-range" min="1" max="365" step="1" value="1" oninput="syncSlider('finiquito-dias','finiquito-dias-range','finiquito-dias-val','',calcularFiniquito)" />
+          <input type="number" id="finiquito-dias" placeholder="o escribe aquí…" oninput="syncNumber('finiquito-dias','finiquito-dias-range','finiquito-dias-val','',calcularFiniquito)" />
+        </div>
+        <div class="field">
+          <label>Años de antigüedad — <strong id="finiquito-anios-val">1</strong></label>
+          <input type="range" class="slider" id="finiquito-anios-range" min="1" max="30" step="1" value="1" oninput="syncSlider('finiquito-anios','finiquito-anios-range','finiquito-anios-val','',calcularFiniquito)" />
+          <input type="number" id="finiquito-anios" placeholder="o escribe aquí…" oninput="syncNumber('finiquito-anios','finiquito-anios-range','finiquito-anios-val','',calcularFiniquito)" />
+        </div>
+        <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
+          <span style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</span>
+          <div id="finiquito-resultado" style="margin-top:.5rem;color:var(--ink)">—</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card" style="margin-top:2rem;text-align:center">
+      <p style="color:var(--ink-soft);font-size:.9rem">¿Necesitas ayuda para reclamar tu finiquito o aguinaldo? Nuestros asesores te apoyan sin costo.</p>
+      <a href="/#afiliacion" class="btn btn-navy" style="margin-top:1rem">Solicitar asesoría — Afíliate gratis</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-bottom" style="border-top:none;margin-top:0;padding-top:0">
+    <span>© 2026 Confederación Joven de México — Baja California.</span>
+    <a href="/" style="color:var(--gold-bright)">Volver al inicio</a>
+  </div>
+</footer>
+
+<script src="/js/main.js?v=3"></script>
+</body>
+</html>
