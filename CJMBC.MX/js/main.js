@@ -19,10 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ===================== Formularios de afiliación =====================
-  // Conectado a Google Sheets vía Apps Script
-  // Reemplaza APPS_SCRIPT_URL con la URL de tu web app desplegada
-  const APPS_SCRIPT_URL = 'TU_URL_APPS_SCRIPT'; // ← pega aquí tu URL
-
   document.querySelectorAll('form[data-affiliation-form]').forEach(form => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -33,25 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.disabled = true;
       btn.textContent = 'Enviando…';
 
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
-
       try {
-        // Usamos mode: 'no-cors' para evitar restricciones de CORS con Apps Script
-        // El script igual recibe y procesa los datos aunque no podamos leer la respuesta
-        await fetch(APPS_SCRIPT_URL, {
+        const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
-          body: JSON.stringify(data)
+          body: new FormData(form)
         });
-        // Mostramos éxito (el script procesó los datos en Google Sheets)
+        const result = await response.json();
+        if (!result.success) throw new Error(result.message);
         const successBox = document.querySelector(form.dataset.successTarget);
         form.style.display = 'none';
         if (successBox) successBox.classList.add('show');
         window.scrollTo({ top: form.closest('section').offsetTop - 100, behavior: 'smooth' });
       } catch {
-        alert('Sin conexión a internet. Por favor verifica tu red e intenta de nuevo.');
+        alert('Hubo un error al enviar. Por favor verifica tu conexión e intenta de nuevo.');
         btn.disabled = false;
         btn.textContent = originalText;
       }

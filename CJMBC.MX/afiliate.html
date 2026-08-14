@@ -6,7 +6,7 @@
 <title>Afíliate | Confederación Joven de México</title>
 <meta name="theme-color" content="#1a3050" />
 <link rel="icon" href="/img/logo.png" type="image/png" />
-<link rel="stylesheet" href="/css/main.css?v=6" />
+<link rel="stylesheet" href="/css/main.css?v=7" />
 </head>
 <body>
 
@@ -57,16 +57,19 @@
     </div>
 
     <form data-affiliation-form data-success-target="#exito-nacional" class="form-card">
+      <input type="hidden" name="access_key" value="TU_ACCESS_KEY_AQUI">
+      <input type="hidden" name="_subject" value="Nueva solicitud de afiliación — CJMBC Baja California">
+      <input type="hidden" name="from_name" value="CJMBC.MX">
       <h3 style="font-size:1.1rem;margin-bottom:1.25rem">Información personal</h3>
       <div class="grid grid-2">
-        <div class="field"><label>Nombre completo *</label><input type="text" required placeholder="Nombre y apellidos" /></div>
-        <div class="field"><label>CURP *</label><input type="text" required maxlength="18" placeholder="18 caracteres" /></div>
-        <div class="field"><label>Correo electrónico *</label><input type="email" required placeholder="tucorreo@ejemplo.com" /></div>
-        <div class="field"><label>Teléfono *</label><input type="tel" required placeholder="10 dígitos" /></div>
-        <div class="field"><label>Fecha de nacimiento *</label><input type="date" required /></div>
+        <div class="field"><label>Nombre completo *</label><input type="text" name="nombre" required placeholder="Nombre y apellidos" /></div>
+        <div class="field"><label>CURP *</label><input type="text" name="curp" required maxlength="18" placeholder="18 caracteres" /></div>
+        <div class="field"><label>Correo electrónico *</label><input type="email" name="email" required placeholder="tucorreo@ejemplo.com" /></div>
+        <div class="field"><label>Teléfono *</label><input type="tel" name="telefono" required placeholder="10 dígitos" /></div>
+        <div class="field"><label>Fecha de nacimiento *</label><input type="date" name="fecha_nacimiento" required /></div>
         <div class="field">
           <label>Municipio en Baja California *</label>
-          <select required>
+          <select name="municipio" required>
             <option value="">Elige tu municipio…</option>
             <option value="tijuana">Tijuana</option>
             <option value="mexicali">Mexicali</option>
@@ -79,20 +82,20 @@
 
       <h3 style="font-size:1.1rem;margin:1.5rem 0 1.25rem">Información laboral</h3>
       <div class="grid grid-2">
-        <div class="field"><label>Empresa donde trabajas *</label><input type="text" required /></div>
-        <div class="field"><label>Puesto *</label><input type="text" required /></div>
-        <div class="field" style="grid-column:1/-1"><label>Dirección del centro de trabajo</label><input type="text" /></div>
+        <div class="field"><label>Empresa donde trabajas *</label><input type="text" name="empresa" required /></div>
+        <div class="field"><label>Puesto *</label><input type="text" name="puesto" required /></div>
+        <div class="field" style="grid-column:1/-1"><label>Dirección del centro de trabajo</label><input type="text" name="direccion_trabajo" /></div>
       </div>
 
       <h3 style="font-size:1.1rem;margin:1.5rem 0 1.25rem">Documentos</h3>
       <div class="grid grid-2">
-        <div class="field"><label>INE (frente y reverso) *</label><input type="file" required accept="image/*,.pdf" multiple /></div>
-        <div class="field"><label>Selfie *</label><input type="file" required accept="image/*" /></div>
-        <div class="field" style="grid-column:1/-1"><label>Recibo de nómina más reciente *</label><input type="file" required accept="image/*,.pdf" /></div>
+        <div class="field"><label>INE (frente y reverso) *</label><input type="file" name="ine" required accept="image/*,.pdf" multiple /></div>
+        <div class="field"><label>Selfie *</label><input type="file" name="selfie" required accept="image/*" /></div>
+        <div class="field" style="grid-column:1/-1"><label>Recibo de nómina más reciente *</label><input type="file" name="nomina" required accept="image/*,.pdf" /></div>
       </div>
 
       <div class="field" style="margin-top:1.5rem">
-        <label class="field-check"><input type="checkbox" required /> He leído y acepto los estatutos de la Confederación Joven de México y autorizo el tratamiento de mis datos personales conforme al aviso de privacidad.</label>
+        <label class="field-check"><input type="checkbox" name="acepto_estatutos" required /> He leído y acepto los estatutos de la Confederación Joven de México y autorizo el tratamiento de mis datos personales conforme al aviso de privacidad.</label>
       </div>
 
       <button type="submit" class="btn btn-gold" style="width:100%;margin-top:1rem">Enviar solicitud de afiliación</button>
@@ -117,6 +120,6 @@
   </div>
 </footer>
 
-<script src="/js/main.js?v=3"></script>
+<script src="/js/main.js?v=4"></script>
 </body>
 </html>
