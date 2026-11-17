@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..600&family=Geist:wght@400..700&display=swap">
 <script>document.documentElement.classList.add('js')</script>
-<link rel="stylesheet" href="/css/main.css?v=9">
+<link rel="stylesheet" href="/css/main.css?v=10">
 
 </head>
 <body>
@@ -45,14 +45,25 @@
 </div></section>
 <section class="section"><div class="container">
   <div class="chips"><a href="#liquidacion">Indemnización</a><a href="#finiquito">Finiquito</a><a href="#aguinaldo">Aguinaldo</a><a href="#vacaciones">Vacaciones</a><a href="#horas">Horas extra</a><a href="#dominical">Prima dominical</a><a href="#cuota">Cuota sindical</a></div>
-  <div class="calcs"><article class="calc" id="liquidacion" data-calc="liquidacion">
+  <div class="calcs"><article class="calc" id="liquidacion" data-calc="liquidacion" data-gated>
   <h2>Indemnización por despido injustificado</h2>
   <p class="law">Arts. 48, 50 y 162 de la LFT</p>
   <div class="field"><label for="salario-liquidacion">Salario mensual bruto (MXN)</label>
   <div class="pair"><input type="range" data-for="salario" min="3000" max="100000" step="500" value="10000" aria-label="Salario mensual bruto (MXN), deslizador"><input id="salario-liquidacion" name="salario" type="number" inputmode="decimal" min="0" step="any" value="10000" placeholder=""></div></div><div class="field"><label for="anios-liquidacion">Años completos trabajados</label>
   <div class="pair"><input type="range" data-for="anios" min="0" max="40" step="1" value="3" aria-label="Años completos trabajados, deslizador"><input id="anios-liquidacion" name="anios" type="number" inputmode="decimal" min="0" step="any" value="3" placeholder=""></div></div><div class="field"><label for="meses-liquidacion">Meses adicionales</label>
   <div class="pair"><input type="range" data-for="meses" min="0" max="11" step="1" value="0" aria-label="Meses adicionales, deslizador"><input id="meses-liquidacion" name="meses" type="number" inputmode="decimal" min="0" step="any" value="0" placeholder=""></div></div><div class="field"><label for="salmin-liquidacion">Salario mínimo diario vigente (opcional)</label><input id="salmin-liquidacion" name="salmin" type="number" inputmode="decimal" min="0" step="any" placeholder="Consúltalo en CONASAMI"><span class="help">Se usa para el tope de la prima de antigüedad (2 salarios mínimos).</span></div>
-  <div class="result" aria-live="polite"><small>Resultado estimado</small><div class="body"></div></div>
+  <div class="gate">
+    <h3>Para ver tu resultado</h3>
+    <p class="help">Déjanos tu nombre y fecha de nacimiento. Un asesor del sindicato puede revisar tu caso.</p>
+    <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off">
+    <div class="row two">
+      <div class="field"><label for="nombre-liquidacion">Tu nombre</label><input id="nombre-liquidacion" name="nombre" type="text" autocomplete="name"><span class="err" role="alert"></span></div>
+      <div class="field"><label for="nac-liquidacion">Fecha de nacimiento</label><input id="nac-liquidacion" name="fecha_nacimiento" type="date" autocomplete="bday"><span class="err" role="alert"></span></div>
+    </div>
+    <button class="btn btn-gold btn-block js-save" type="button">Calcular mi indemnización</button>
+    <div class="status" role="status" aria-live="polite"></div>
+  </div>
+  <div class="result" aria-live="polite" hidden><small>Resultado estimado</small><div class="body"></div></div>
   <p class="cta">No incluye salarios vencidos ni tu finiquito. <a href="/problema">Cuéntanos tu caso</a> y lo revisamos.</p>
 </article><article class="calc" id="finiquito" data-calc="finiquito">
   <h2>Finiquito (renuncia o despido)</h2>
@@ -137,6 +148,6 @@
     </div>
   </div>
 </footer>
-<script src="/js/main.js?v=8" defer></script>
+<script src="/js/main.js?v=11" defer></script>
 </body>
 </html>

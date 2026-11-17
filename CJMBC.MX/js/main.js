@@ -141,6 +141,15 @@
     return { sd: sd, diasAnio: diasAnio, aguinaldo: aguinaldo, vacPago: vacPago, prima: vacPago * 0.25 };
   }
 
+  // Indemnización por despido injustificado (arts. 48, 50 y 162 LFT)
+  function liqValores(v) {
+    if (!v.salario) return null;
+    var sd = v.salario / 30, anios = (v.anios || 0) + (v.meses || 0) / 12;
+    var base = v.salmin > 0 ? Math.min(sd, 2 * v.salmin) : sd;
+    var tres = sd * 90, veinte = sd * 20 * anios, prima = base * 12 * anios;
+    return { anios: anios, tres: tres, veinte: veinte, prima: prima, total: tres + veinte + prima };
+  }
+
   var CALCS = {
     cuota: function (v) {
       if (!v.sdi) return null;
@@ -178,22 +187,24 @@
         total('Finiquito estimado', MXN(d.aguinaldo + d.vacPago + d.prima));
     },
     liquidacion: function (v) {
-      if (!v.salario) return null;
-      var sd = v.salario / 30, anios = (v.anios || 0) + (v.meses || 0) / 12;
-      var base = v.salmin > 0 ? Math.min(sd, 2 * v.salmin) : sd;
-      var tres = sd * 90, veinte = sd * 20 * anios, prima = base * 12 * anios;
-      return line('3 meses de salario', MXN(tres)) + line('20 días por año (' + anios.toFixed(1) + ' años)', MXN(veinte)) +
-        line('Prima de antigüedad', MXN(prima)) + total('Indemnización estimada', MXN(tres + veinte + prima));
+      var r = liqValores(v);
+      if (!r) return null;
+      return line('3 meses de salario', MXN(r.tres)) + line('20 días por año (' + r.anios.toFixed(1) + ' años)', MXN(r.veinte)) +
+        line('Prima de antigüedad', MXN(r.prima)) + total('Indemnización estimada', MXN(r.total));
     }
   };
 
   document.querySelectorAll('.calc[data-calc]').forEach(function (card) {
     var fn = CALCS[card.dataset.calc];
-    var out = card.querySelector('.result .body');
+    var resultBox = card.querySelector('.result');
+    var out = resultBox.querySelector('.body');
+    var gated = card.hasAttribute('data-gated');
+    var SKIP = { nombre: 1, fecha_nacimiento: 1, botcheck: 1, acepto_privacidad: 1 };
 
     function values() {
       var v = {};
       card.querySelectorAll('input[name]').forEach(function (el) {
+        if (SKIP[el.name]) return;
         v[el.name] = el.type === 'date' ? el.value : parseFloat(el.value) || 0;
       });
       return v;
@@ -212,8 +223,72 @@
         var rg = card.querySelector('input[type=range][data-for="' + el.name + '"]');
         if (rg) rg.value = Math.min(Math.max(el.value, rg.min), rg.max);
       }
+      if (el.getAttribute('aria-invalid') === 'true') {
+        el.setAttribute('aria-invalid', 'false');
+        var er = el.closest('.field') && el.closest('.field').querySelector('.err');
+        if (er) er.textContent = '';
+      }
       run();
     });
     run();
+
+    /* Calculadora con captura de datos: el resultado se muestra al guardar */
+    if (gated) {
+      var btn = card.querySelector('.js-save');
+      var status = card.querySelector('.status');
+      var label = btn.textContent;
+      var showStatus = function (kind, msg) { status.className = 'status show ' + kind; status.textContent = msg; };
+
+      btn.addEventListener('click', function () {
+        status.className = 'status';
+        var nombre = card.querySelector('[name="nombre"]');
+        var fecha = card.querySelector('[name="fecha_nacimiento"]');
+        var bad = null;
+        function mark(el, good, msg) {
+          el.setAttribute('aria-invalid', good ? 'false' : 'true');
+          var er = el.closest('.field') && el.closest('.field').querySelector('.err');
+          if (er) er.textContent = good ? '' : msg;
+          if (!good && !bad) bad = el;
+        }
+        mark(nombre, nombre.value.trim().length > 0, 'Escribe tu nombre.');
+        var d = new Date(fecha.value), hoy = new Date();
+        mark(fecha, fecha.value !== '' && !isNaN(d) && d <= hoy && d.getFullYear() >= 1930, 'Escribe una fecha de nacimiento válida.');
+        var v = values();
+        var liq = liqValores(v);
+        if (!liq || !(v.salario > 0)) { var sal = card.querySelector('[name="salario"]'); mark(sal, false, 'Escribe tu salario.'); }
+        if (bad) { bad.focus(); showStatus('error', 'Revisa los campos marcados.'); return; }
+
+        var trap = card.querySelector('[name="botcheck"]');
+        var reveal = function (note) {
+          resultBox.hidden = false;
+          run();
+          if (note) showStatus('error', note);
+          resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          btn.textContent = 'Actualizar resultado';
+          btn.disabled = false;
+        };
+        if (trap && trap.checked) { reveal(); return; }
+
+        btn.disabled = true; btn.textContent = 'Calculando…';
+        fetch(SUPABASE_URL + '/rest/v1/calculos_despido', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Prefer': 'return=minimal' },
+          body: JSON.stringify({
+            nombre: nombre.value.trim(),
+            fecha_nacimiento: fecha.value,
+            salario_mensual: v.salario,
+            anios: Math.round(v.anios || 0),
+            meses: Math.round(v.meses || 0),
+            salario_minimo: v.salmin > 0 ? v.salmin : null,
+            total_estimado: Math.round(liq.total * 100) / 100
+          })
+        })
+          .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); reveal(); })
+          .catch(function (err) {
+            console.warn('Calc save error:', err);
+            reveal('No pudimos guardar tus datos, pero aquí está tu resultado.');
+          });
+      });
+    }
   });
 })();
