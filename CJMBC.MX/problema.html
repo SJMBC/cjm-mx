@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cuéntanos tu problema laboral, confidencial | CJM Baja California</title>
+<meta name="description" content="Formulario confidencial para trabajadores de Baja California con problemas en su empresa. Un asesor del sindicato se pondrá en contacto contigo lo antes posible. Sin costo.">
+<link rel="canonical" href="https://cjmbc.mx/problema">
+
+<meta name="theme-color" content="#0b1727">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="Confederación Joven de México, Baja California">
+<meta property="og:title" content="Cuéntanos tu problema laboral, confidencial | CJM Baja California">
+<meta property="og:description" content="Formulario confidencial para trabajadores de Baja California con problemas en su empresa. Un asesor del sindicato se pondrá en contacto contigo lo antes posible. Sin costo.">
+<meta property="og:url" content="https://cjmbc.mx/problema">
+<meta property="og:image" content="https://cjmbc.mx/img/logo-512.png">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/logo-160.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..600&family=Geist:wght@400..700&display=swap">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="/css/main.css?v=9">
+
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="brand" aria-label="Confederación Joven de México, inicio">
+      <img src="/img/logo-160.png" width="44" height="44" alt="">
+      <span class="brand-text"><strong>Confederación Joven de México</strong><span>Baja California</span></span>
+    </a>
+    <nav class="nav" aria-label="Principal"><a href="/derechos">Tus derechos</a><a href="/calculadoras">Calculadoras</a><a href="/afiliate">Afíliate</a><a class="btn btn-gold" href="/problema">Tengo un problema</a></nav>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Menú móvil"><a href="/derechos">Tus derechos</a><a href="/calculadoras">Calculadoras</a><a href="/afiliate">Afíliate</a><a class="btn btn-gold" href="/problema">Tengo un problema</a></nav>
+</header>
+<main id="contenido">
+<section class="page-hero"><div class="container">
+  <p class="crumbs"><a href="/">Inicio</a> <span aria-hidden="true">/</span> <span>Tengo un problema</span></p>
+  <h1>Cuéntanos qué está pasando en tu trabajo</h1>
+  <p>Un asesor del sindicato revisará tu caso y se pondrá en contacto contigo lo antes posible. No necesitas estar afiliado.</p>
+</div></section>
+<section class="section">
+  <div class="container narrow">
+    <div class="privacy-note"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg><p>Tu información es confidencial y solo la ve el equipo del sindicato. <strong>No compartimos tu caso con tu empresa.</strong> Necesitamos saber de qué empresa se trata para poder ayudarte.</p></div>
+    <form class="form" data-form="problema" novalidate>
+      <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off">
+      <fieldset>
+        <legend>1. Tu empresa</legend>
+        <div class="row two">
+          <div class="field">
+            <label for="empresa">Nombre de la empresa</label>
+            <input id="empresa" name="empresa" type="text" autocomplete="organization" required data-msg="Escribe el nombre de tu empresa.">
+            <span class="err" role="alert"></span>
+          </div>
+          <div class="field">
+            <label for="razon_social">Razón social <span class="opt">(si la sabes)</span></label>
+            <input id="razon_social" name="razon_social" type="text">
+            <span class="help">Aparece en tu recibo de nómina o en tu contrato.</span>
+          </div>
+          <div class="field">
+            <label for="municipio">Municipio</label>
+            <select id="municipio" name="municipio" required data-msg="Elige tu municipio.">
+              <option value="">Elige…</option>
+              <option>Tijuana</option><option>Mexicali</option><option>Ensenada</option><option>Tecate</option><option>Playas de Rosarito</option><option>Otro</option>
+            </select>
+            <span class="err" role="alert"></span>
+          </div>
+          <div class="field">
+            <label for="puesto">Tu puesto</label>
+            <input id="puesto" name="puesto" type="text" required data-msg="Escribe tu puesto.">
+            <span class="err" role="alert"></span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="num_trabajadores">Trabajadores en tu empresa <span class="opt">(opcional)</span></label>
+          <select id="num_trabajadores" name="num_trabajadores">
+            <option value="">Elige…</option>
+            <option>Menos de 50</option><option>De 50 a 250</option><option>De 250 a 1,000</option><option>Más de 1,000</option><option>No sé</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="hay_sindicato">¿Hay sindicato en tu empresa? <span class="opt">(opcional)</span></label>
+          <select id="hay_sindicato" name="hay_sindicato">
+            <option value="">Elige…</option>
+            <option>Sí</option><option>No</option><option>No sé</option>
+          </select>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>2. Qué pasó</legend>
+        <div class="field">
+          <label for="tipo">Tipo de problema</label>
+          <select id="tipo" name="tipo" required data-msg="Elige una opción.">
+            <option value="">Elige una opción…</option>
+            <option>Me despidieron o me quieren despedir</option>
+            <option>Me obligan a renunciar o a firmar algo</option>
+            <option>No me pagan completo (salario, horas extra, aguinaldo)</option>
+            <option>Represalias o acoso en el trabajo</option>
+            <option>Problemas con IMSS, Infonavit o Afore</option>
+            <option>Otro</option>
+          </select>
+          <span class="err" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="cuando">¿Cuándo pasó? <span class="opt">(opcional)</span></label>
+          <select id="cuando" name="cuando">
+            <option value="">Elige…</option>
+            <option>Hoy o esta semana</option><option>Este mes</option><option>Hace 1 o 2 meses</option><option>Hace más de 2 meses</option><option>Sigue pasando</option>
+          </select>
+          <span class="help">Algunos reclamos tienen plazos cortos, por eso nos ayuda saberlo.</span>
+        </div>
+        <div class="field">
+          <label for="mensaje">Cuéntanos con tus palabras</label>
+          <textarea id="mensaje" name="mensaje" required data-msg="Cuéntanos brevemente qué pasó."></textarea>
+          <span class="err" role="alert"></span>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>3. Cómo te contactamos</legend>
+        <div class="row two">
+          <div class="field">
+            <label for="nombre">Tu nombre</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="name" required data-msg="Dinos cómo llamarte.">
+            <span class="err" role="alert"></span>
+          </div>
+          <div class="field">
+            <label for="telefono">WhatsApp o teléfono</label>
+            <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" required data-msg="Deja un número para contactarte.">
+            <span class="err" role="alert"></span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Correo <span class="opt">(opcional)</span></label>
+          <input id="email" name="email" type="email" autocomplete="email">
+        </div>
+      </fieldset>
+      <label class="check"><input type="checkbox" name="acepto_privacidad" required data-msg="Debes aceptar para continuar."><span>Acepto el <a href="/privacidad" target="_blank">aviso de privacidad</a>.</span></label>
+      <button class="btn btn-gold btn-block" type="submit">Enviar de forma confidencial</button>
+      <div class="status" role="status" aria-live="polite"></div>
+    </form>
+    <p style="margin-top:1.75rem;color:var(--ink-soft);font-size:.95rem">¿Prefieres hablar con alguien? Llama al <a href="tel:+526634905561" style="color:var(--navy);font-weight:600">663 490 5561</a>.</p>
+    <p style="margin-top:.75rem;color:var(--ink-soft);font-size:.95rem">¿Prefieres afiliarte primero? <a class="link-arrow" href="/afiliate">Ir a afiliación <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+  </div>
+</section>
+</main>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="/" class="brand"><img src="/img/logo-160.png" width="44" height="44" alt=""><span class="brand-text"><strong>Confederación Joven de México</strong><span>Baja California</span></span></a>
+        <p style="max-width:36ch">Sindicato legalmente constituido. Sindicalismo actual para las y los trabajadores de Baja California.</p>
+      </div>
+      <div>
+        <h4>Ayuda</h4>
+        <a href="/problema">Tengo un problema</a>
+        <a href="/afiliate">Afíliate</a>
+        <a href="/derechos">Tus derechos</a>
+        <a href="/calculadoras">Calculadoras</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="tel:+526634905561">Tel. 663 490 5561</a>
+        <a href="mailto:sjmxbc@gmail.com">sjmxbc@gmail.com</a>
+        <a href="/privacidad">Aviso de privacidad</a>
+        <a href="https://confederacionjoven.mx" target="_blank" rel="noopener">Sede nacional CJM</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Confederación Joven de México, Baja California.</span>
+      <span>Información general. No sustituye asesoría legal.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js?v=8" defer></script>
+</body>
+</html>

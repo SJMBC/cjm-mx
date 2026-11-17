@@ -1,555 +1,141 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-MX">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Calculadoras laborales | Confederación Joven de México</title>
-<meta name="theme-color" content="#1a3050" />
-<link rel="icon" href="/img/logo.png" type="image/png" />
-<link rel="stylesheet" href="/css/main.css?v=7" />
-<style>
-  /* ── Form cards — dark navy theme ── */
-  .form-card{
-    background:var(--navy-dark) !important;
-    border:1px solid rgba(227,179,65,.22) !important;
-    box-shadow:0 8px 32px -8px rgba(0,0,0,.45) !important;
-  }
-  .form-card h3{ color:#fff !important; }
-  .card-subtitle{ font-size:.8rem;color:rgba(255,255,255,.5);margin:.1rem 0 1.1rem;font-style:italic }
-  .form-card .hint{ color:rgba(255,255,255,.55) !important; }
-  .form-card .field label{ color:rgba(255,255,255,.88) !important; }
-  .form-card .card{ background:rgba(0,0,0,.28) !important; border-color:rgba(227,179,65,.35) !important; }
-  .form-card .card span,
-  .form-card .card p{ color:rgba(255,255,255,.6) !important; }
-  .form-card .card div,
-  .form-card .card strong{ color:#fff !important; }
-  .form-card p[style*="ink-soft"]{ color:rgba(255,255,255,.55) !important; }
-  .form-card p[style*="ink"]{ color:rgba(255,255,255,.8) !important; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadoras laborales: finiquito, liquidación y aguinaldo | CJM</title>
+<meta name="description" content="Calcula tu finiquito, indemnización por despido, aguinaldo, vacaciones, horas extra y prima dominical. Estimaciones según la Ley Federal del Trabajo.">
+<link rel="canonical" href="https://cjmbc.mx/calculadoras">
 
-  /* ── Number / date inputs — dark ── */
-  .form-card .field input[type="number"],
-  .form-card .field input[type="date"]{
-    background:rgba(255,255,255,.07) !important;
-    border:1px solid rgba(255,255,255,.18) !important;
-    color:#fff !important;
-    border-radius:.6rem;
-    padding:.6rem .85rem;
-    font-size:1rem;
-    width:100%;
-    margin-top:.25rem;
-  }
-  .form-card .field input[type="number"]::placeholder{ color:rgba(255,255,255,.35); }
-  .form-card .field input[type="number"]:focus,
-  .form-card .field input[type="date"]:focus{
-    outline:none;
-    border-color:var(--gold) !important;
-  }
+<meta name="theme-color" content="#0b1727">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="Confederación Joven de México, Baja California">
+<meta property="og:title" content="Calculadoras laborales: finiquito, liquidación y aguinaldo | CJM">
+<meta property="og:description" content="Calcula tu finiquito, indemnización por despido, aguinaldo, vacaciones, horas extra y prima dominical. Estimaciones según la Ley Federal del Trabajo.">
+<meta property="og:url" content="https://cjmbc.mx/calculadoras">
+<meta property="og:image" content="https://cjmbc.mx/img/logo-512.png">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/logo-160.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..600&family=Geist:wght@400..700&display=swap">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="/css/main.css?v=9">
 
-  /* ── Slider: borde dorado, navy izquierda, crema derecha ── */
-  .field input[type="range"]{
-    -webkit-appearance:none;
-    appearance:none;
-    width:100%;
-    height:20px;
-    border-radius:10px;
-    background:linear-gradient(to right,var(--navy-deep) 50%,#e4d9c3 50%);
-    border:2px solid var(--gold);
-    cursor:pointer;
-    margin-bottom:.6rem;
-    margin-top:.25rem;
-    outline:none;
-    padding:0;
-    box-sizing:border-box;
-  }
-  .field input[type="range"]::-webkit-slider-thumb{
-    -webkit-appearance:none;
-    width:28px;
-    height:28px;
-    border-radius:50%;
-    background:var(--gold);
-    cursor:pointer;
-    border:none;
-    box-shadow:0 2px 8px rgba(0,0,0,.5);
-  }
-  .field input[type="range"]::-moz-range-thumb{
-    width:28px;
-    height:28px;
-    border-radius:50%;
-    background:var(--gold);
-    cursor:pointer;
-    border:none;
-    box-shadow:0 2px 8px rgba(0,0,0,.5);
-  }
-  .field input[type="range"]::-moz-range-track{
-    height:20px;
-    border-radius:10px;
-    background:#e4d9c3;
-  }
-  .field input[type="range"]::-moz-range-progress{
-    height:20px;
-    border-radius:10px;
-    background:var(--navy-deep);
-  }
-  .field input[type="range"]:focus{ outline:none; }
-</style>
 </head>
 <body>
-
+<a class="skip" href="#contenido">Saltar al contenido</a>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo">
-      <img src="/img/logo.png" alt="CJM" class="logo-mark">
-      <span class="logo-text"><strong>Confederación Joven de México</strong><span>Baja California</span></span>
+    <a href="/" class="brand" aria-label="Confederación Joven de México, inicio">
+      <img src="/img/logo-160.png" width="44" height="44" alt="">
+      <span class="brand-text"><strong>Confederación Joven de México</strong><span>Baja California</span></span>
     </a>
-    <nav class="nav">
-      <a href="/#quienes-somos">Quiénes Somos</a>
-      <a href="/#derechos">Derechos</a>
-      <a href="/#beneficios">Beneficios</a>
-      <a href="/comunicados.html">Comunicados</a>
-      <a href="/calculadoras.html" style="color:var(--gold-bright)">Calculadoras</a>
-      <a href="/#contacto">Contacto</a>
-    </nav>
-    <a href="/afiliate.html" class="btn btn-gold nav-cta">Afíliate gratis</a>
-    <button class="menu-toggle" aria-label="Abrir menú">☰</button>
+    <nav class="nav" aria-label="Principal"><a href="/derechos">Tus derechos</a><a href="/calculadoras" aria-current="page">Calculadoras</a><a href="/afiliate">Afíliate</a><a class="btn btn-gold" href="/problema">Tengo un problema</a></nav>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
-  <div class="mobile-nav">
-    <a href="/#quienes-somos">Quiénes Somos</a>
-    <a href="/#derechos">Derechos</a>
-    <a href="/#beneficios">Beneficios</a>
-    <a href="/comunicados.html">Comunicados</a>
-    <a href="/calculadoras.html">Calculadoras</a>
-    <a href="/#contacto">Contacto</a>
-  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Menú móvil"><a href="/derechos">Tus derechos</a><a href="/calculadoras">Calculadoras</a><a href="/afiliate">Afíliate</a><a class="btn btn-gold" href="/problema">Tengo un problema</a></nav>
 </header>
-
-<section class="hero" style="padding:3.5rem 0">
-  <div class="container">
-    <a href="/" style="color:rgba(255,255,255,.6);font-size:.85rem">← Volver al inicio</a>
-    <span class="eyebrow" style="margin-top:1rem;display:inline-flex">Herramientas</span>
-    <h1 style="font-size:2.2rem;margin-top:.75rem">Calculadoras laborales</h1>
-    <p class="lead">Estimaciones rápidas de aguinaldo y finiquito. Estas herramientas son orientativas; consulta a un asesor del sindicato para tu caso específico.</p>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="grid grid-2">
-
-      <!-- 1. Cuota sindical -->
-      <div class="form-card">
-        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Cuota sindical (2% del SDI)</h3>
-        <p class="card-subtitle">Art. 100 de la LFT</p>
-        <p class="hint" style="margin-bottom:1rem">Calcula tu cuota sindical ordinaria a partir de tu Salario Diario Integrado (SDI) o salario base.</p>
-        <div class="field">
-          <label>SDI / Salario base diario (MXN)</label>
-          <input type="range" class="slider" min="100" max="3000" step="10" value="450"
-                 oninput="document.getElementById('cuota-sdi').value=this.value;calcularCuota()">
-          <input type="number" id="cuota-sdi" placeholder="Ej. 450"
-                 oninput="this.previousElementSibling.value=this.value||0;calcularCuota()">
-        </div>
-        <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
-          <span style="font-size:.85rem;color:var(--ink-soft)">Cuota sindical (2%)</span>
-          <div id="cuota-resultado" style="margin-top:.5rem;color:var(--ink)">—</div>
-        </div>
-      </div>
-
-      <!-- 2. Aguinaldo -->
-      <div class="form-card">
-        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Calculadora de aguinaldo</h3>
-        <p class="card-subtitle">Art. 87 de la LFT</p>
-        <div class="field">
-          <label>Salario mensual (MXN)</label>
-          <input type="range" class="slider" min="3000" max="100000" step="500" value="12000"
-                 oninput="document.getElementById('aguinaldo-salario').value=this.value;calcularAguinaldo()">
-          <input type="number" id="aguinaldo-salario" placeholder="Ej. 12000"
-                 oninput="this.previousElementSibling.value=this.value||0;calcularAguinaldo()">
-        </div>
-        <div class="field">
-          <label>Días de aguinaldo (Ley = 15)</label>
-          <input type="range" class="slider" min="15" max="60" step="1" value="15"
-                 oninput="document.getElementById('aguinaldo-dias').value=this.value;calcularAguinaldo()">
-          <input type="number" id="aguinaldo-dias" value="15"
-                 oninput="this.previousElementSibling.value=this.value||15;calcularAguinaldo()">
-        </div>
-        <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
-          <span style="font-size:.85rem;color:var(--ink-soft)">Aguinaldo estimado</span>
-          <div id="aguinaldo-resultado" style="font-size:1.4rem;font-weight:700;color:var(--navy-deep);margin-top:.3rem">—</div>
-        </div>
-      </div>
-
-      <!-- 3. Vacaciones y prima vacacional -->
-      <div class="form-card">
-        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Vacaciones y prima vacacional</h3>
-        <p class="card-subtitle">Art. 76 y 80 de la LFT</p>
-        <div class="field">
-          <label>Salario diario (MXN)</label>
-          <input type="range" class="slider" min="100" max="3000" step="10" value="400"
-                 oninput="document.getElementById('vac-salario').value=this.value;calcularVacaciones()">
-          <input type="number" id="vac-salario" placeholder="Ej. 400"
-                 oninput="this.previousElementSibling.value=this.value||0;calcularVacaciones()">
-        </div>
-        <div class="field">
-          <label>Años de antigüedad</label>
-          <input type="range" class="slider" min="1" max="30" step="1" value="2"
-                 oninput="document.getElementById('vac-anios').value=this.value;calcularVacaciones()">
-          <input type="number" id="vac-anios" placeholder="Ej. 2"
-                 oninput="this.previousElementSibling.value=this.value||0;calcularVacaciones()">
-        </div>
-        <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
-          <span style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</span>
-          <div id="vac-resultado" style="margin-top:.5rem;color:var(--ink)">—</div>
-        </div>
-      </div>
-
-      <!-- 4. Horas extra -->
-      <div class="form-card">
-        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Horas extra</h3>
-        <p class="card-subtitle">Art. 67 y 68 de la LFT</p>
-        <div class="field">
-          <label>Salario diario (MXN)</label>
-          <input type="range" class="slider" min="100" max="3000" step="10" value="400"
-                 oninput="document.getElementById('horas-salario').value=this.value;calcularHorasExtra()">
-          <input type="number" id="horas-salario" placeholder="Ej. 400"
-                 oninput="this.previousElementSibling.value=this.value||0;calcularHorasExtra()">
-        </div>
-        <div class="field">
-          <label>Horas extra a la semana</label>
-          <input type="range" class="slider" min="1" max="20" step="1" value="6"
-                 oninput="document.getElementById('horas-cantidad').value=this.value;calcularHorasExtra()">
-          <input type="number" id="horas-cantidad" placeholder="Ej. 6"
-                 oninput="this.previousElementSibling.value=this.value||0;calcularHorasExtra()">
-        </div>
-        <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
-          <span style="font-size:.85rem;color:var(--ink-soft)">Pago de horas extra (semana)</span>
-          <div id="horas-resultado" style="margin-top:.5rem;color:var(--ink)">—</div>
-        </div>
-      </div>
-
-      <!-- 5. Prima dominical -->
-      <div class="form-card">
-        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Prima dominical</h3>
-        <p class="card-subtitle">Art. 71 de la LFT</p>
-        <div class="field">
-          <label>Salario diario (MXN)</label>
-          <input type="range" class="slider" min="100" max="3000" step="10" value="400"
-                 oninput="document.getElementById('dominical-salario').value=this.value;calcularPrimaDominical()">
-          <input type="number" id="dominical-salario" placeholder="Ej. 400"
-                 oninput="this.previousElementSibling.value=this.value||0;calcularPrimaDominical()">
-        </div>
-        <div class="field">
-          <label>Domingos trabajados en el mes</label>
-          <input type="range" class="slider" min="1" max="5" step="1" value="4"
-                 oninput="document.getElementById('dominical-dias').value=this.value;calcularPrimaDominical()">
-          <input type="number" id="dominical-dias" placeholder="Ej. 4"
-                 oninput="this.previousElementSibling.value=this.value||0;calcularPrimaDominical()">
-        </div>
-        <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
-          <span style="font-size:.85rem;color:var(--ink-soft)">Prima dominical (25%) del mes</span>
-          <div id="dominical-resultado" style="font-size:1.4rem;font-weight:700;color:var(--navy-deep);margin-top:.3rem">—</div>
-        </div>
-      </div>
-
-      <!-- 6. Finiquito -->
-      <div class="form-card">
-        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Calculadora de finiquito</h3>
-        <p class="card-subtitle">Art. 76, 80 y 87 de la LFT</p>
-        <div class="field">
-          <label>Salario diario (MXN)</label>
-          <input type="range" class="slider" min="100" max="3000" step="10" value="400"
-                 oninput="document.getElementById('finiquito-salario').value=this.value;calcularFiniquito()">
-          <input type="number" id="finiquito-salario" placeholder="Ej. 400"
-                 oninput="this.previousElementSibling.value=this.value||0;calcularFiniquito()">
-        </div>
-        <div class="field">
-          <label>Días trabajados en el año actual</label>
-          <input type="range" class="slider" min="1" max="365" step="1" value="180"
-                 oninput="document.getElementById('finiquito-dias').value=this.value;calcularFiniquito()">
-          <input type="number" id="finiquito-dias" placeholder="Ej. 180"
-                 oninput="this.previousElementSibling.value=this.value||0;calcularFiniquito()">
-        </div>
-        <div class="field">
-          <label>Años de antigüedad</label>
-          <input type="range" class="slider" min="0" max="40" step="1" value="2"
-                 oninput="document.getElementById('finiquito-anios').value=this.value;calcularFiniquito()">
-          <input type="number" id="finiquito-anios" placeholder="Ej. 2"
-                 oninput="this.previousElementSibling.value=this.value||0;calcularFiniquito()">
-        </div>
-        <div class="card" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem">
-          <span style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</span>
-          <div id="finiquito-resultado" style="margin-top:.5rem;color:var(--ink)">—</div>
-        </div>
-      </div>
-
-      <!-- 7. Renuncia Voluntaria -->
-      <div class="form-card">
-        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Renuncia Voluntaria</h3>
-        <p class="card-subtitle">Art. 76, 80, 87 y 162 fracc. III de la LFT</p>
-        <div class="field">
-          <label>Salario mensual bruto ($)</label>
-          <input type="range" class="slider" min="3000" max="100000" step="500" value="10000"
-                 oninput="document.getElementById('rv-salario').value=this.value;calcRenuncia()">
-          <input type="number" id="rv-salario" placeholder="Ej. 10000" min="0"
-                 oninput="this.previousElementSibling.value=this.value||0;calcRenuncia()">
-        </div>
-        <div class="field">
-          <label>Salario mínimo diario ($)</label>
-          <input type="number" id="rv-salmin" placeholder="Ej. 278.80" min="0" step="0.01">
-        </div>
-        <div class="field">
-          <label>Fecha de ingreso</label>
-          <input type="date" id="rv-ingreso" oninput="calcRenuncia()">
-        </div>
-        <div class="field">
-          <label>Fecha de renuncia</label>
-          <input type="date" id="rv-renuncia" oninput="calcRenuncia()">
-        </div>
-        <div class="field">
-          <label>Días de vacaciones ya tomados este periodo</label>
-          <input type="range" class="slider" min="0" max="30" step="1" value="0"
-                 oninput="document.getElementById('rv-vacsion').value=this.value;calcRenuncia()">
-          <input type="number" id="rv-vacsion" placeholder="0" min="0" value="0"
-                 oninput="this.previousElementSibling.value=this.value||0;calcRenuncia()">
-        </div>
-        <button class="btn btn-navy" style="width:100%;margin-top:1rem" onclick="calcRenuncia()">Calcular Finiquito</button>
-        <div class="card" id="rv-resultado" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem;display:none">
-          <p style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</p>
-          <div id="rv-detalle" style="margin-top:.5rem;color:var(--ink)">—</div>
-        </div>
-        <p style="font-size:.8rem;color:var(--ink-soft);margin-top:.75rem">Al renunciar voluntariamente no tienes derecho a indemnización, solo a tu finiquito: partes proporcionales de aguinaldo, vacaciones y prima vacacional.</p>
-      </div>
-
-      <!-- 8. Despido Justificado -->
-      <div class="form-card">
-        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Despido Justificado (Art. 47)</h3>
-        <p class="card-subtitle">Solo finiquito — sin indemnización por ley</p>
-        <div class="field">
-          <label>Salario mensual bruto ($)</label>
-          <input type="range" class="slider" min="3000" max="100000" step="500" value="10000"
-                 oninput="document.getElementById('dj-salario').value=this.value;calcDespJust()">
-          <input type="number" id="dj-salario" placeholder="Ej. 10000" min="0"
-                 oninput="this.previousElementSibling.value=this.value||0;calcDespJust()">
-        </div>
-        <div class="field">
-          <label>Días de vacaciones ya tomados</label>
-          <input type="range" class="slider" min="0" max="30" step="1" value="0"
-                 oninput="document.getElementById('dj-vacsion').value=this.value;calcDespJust()">
-          <input type="number" id="dj-vacsion" placeholder="0" min="0" value="0"
-                 oninput="this.previousElementSibling.value=this.value||0;calcDespJust()">
-        </div>
-        <div class="field">
-          <label>Fecha de ingreso</label>
-          <input type="date" id="dj-ingreso" oninput="calcDespJust()">
-        </div>
-        <div class="field">
-          <label>Fecha de despido</label>
-          <input type="date" id="dj-despido" oninput="calcDespJust()">
-        </div>
-        <button class="btn btn-navy" style="width:100%;margin-top:1rem" onclick="calcDespJust()">Calcular Finiquito</button>
-        <div class="card" id="dj-resultado" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem;display:none">
-          <p style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</p>
-          <div id="dj-detalle" style="margin-top:.5rem;color:var(--ink)">—</div>
-        </div>
-        <p style="font-size:.8rem;color:var(--ink-soft);margin-top:.75rem">En caso de despido justificado por alguna de las causas del Art. 47 LFT, el patrón no está obligado a pagar indemnización, solo el finiquito correspondiente.</p>
-      </div>
-
-      <!-- 9. Indemnización por Despido Injustificado -->
-      <div class="form-card">
-        <h3 style="font-size:1.15rem;margin-bottom:.25rem">Indemnización por Despido Injustificado</h3>
-        <p class="card-subtitle">Art. 48, 50 y 162 de la LFT</p>
-        <div class="field">
-          <label>Salario mensual bruto ($)</label>
-          <input type="range" class="slider" min="3000" max="100000" step="500" value="10000"
-                 oninput="document.getElementById('di-salario').value=this.value;calcLiquidacion()">
-          <input type="number" id="di-salario" placeholder="Ej. 10000" min="0"
-                 oninput="this.previousElementSibling.value=this.value||0;calcLiquidacion()">
-        </div>
-        <div class="field">
-          <label>Años completos trabajados</label>
-          <input type="range" class="slider" min="0" max="40" step="1" value="3"
-                 oninput="document.getElementById('di-anios').value=this.value;calcLiquidacion()">
-          <input type="number" id="di-anios" placeholder="Ej. 3" min="0"
-                 oninput="this.previousElementSibling.value=this.value||0;calcLiquidacion()">
-        </div>
-        <div class="field">
-          <label>Meses adicionales (fracción del año)</label>
-          <input type="range" class="slider" min="0" max="11" step="1" value="0"
-                 oninput="document.getElementById('di-meses').value=this.value;calcLiquidacion()">
-          <input type="number" id="di-meses" placeholder="0" min="0" max="11" value="0"
-                 oninput="this.previousElementSibling.value=this.value||0;calcLiquidacion()">
-        </div>
-        <div class="field">
-          <label>Salario mínimo diario vigente ($)</label>
-          <input type="number" id="di-salmin" placeholder="Ej. 278.80" min="0" step="0.01">
-        </div>
-        <button class="btn btn-navy" style="width:100%;margin-top:1rem" onclick="calcLiquidacion()">Calcular Liquidación</button>
-        <div class="card" id="di-resultado" style="background:rgba(227,179,65,.08);border-color:rgba(227,179,65,.35);margin-top:1rem;display:none">
-          <p style="font-size:.85rem;color:var(--ink-soft)">Desglose estimado</p>
-          <div id="di-detalle" style="margin-top:.5rem;color:var(--ink)">—</div>
-        </div>
-        <p style="font-size:.8rem;color:var(--ink-soft);margin-top:.75rem">Incluye: 3 meses de salario (Art. 50), 20 días por año trabajado y prima de antigüedad de 12 días por año. Aplica tope de 25 veces el salario mínimo diario para la parte variable.</p>
-      </div>
-
-    </div>
-
-    <!-- CTA Card -->
-    <div class="card" style="background:var(--gold-bright);border:none;margin-top:2rem;border-radius:1rem;padding:2rem">
-      <h2 style="color:var(--navy);margin-top:0">¿Te deben prestaciones o te despidieron?</h2>
-      <p style="color:var(--navy)">Como <strong>afiliado al sindicato</strong>, te brindamos asesoría laboral personalizada sin costo. Nuestros representantes te acompañan en cada paso.</p>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem">
-        <a href="/afiliate.html" class="btn btn-navy">Afíliate gratis</a>
-        <a href="https://wa.me/526641234567" target="_blank" rel="noopener" class="btn"
-           style="background:#25D366;color:white;border:2px solid #25D366">Contáctanos por WhatsApp</a>
-      </div>
-    </div>
-
-    <!-- Recursos oficiales -->
-    <div class="card" style="margin-top:2rem;padding:2rem">
-      <h2 style="color:var(--navy);margin-top:0;font-weight:700">Recursos oficiales para el trabajador</h2>
-      <p style="color:var(--ink-soft)">Instituciones del Gobierno de México que te pueden ayudar</p>
-      <div class="grid grid-2" style="margin-top:1.5rem">
-        <div class="card" style="margin-top:0">
-          <strong>PROFEDET</strong>
-          <p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Asesoría y representación legal gratuita en materia laboral ante la autoridad conciliadora.</p>
-        </div>
-        <div class="card" style="margin-top:0">
-          <strong>CONASAMI</strong>
-          <p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Comisión Nacional de Salarios Mínimos. Consulta el salario mínimo vigente en tu zona.</p>
-        </div>
-        <div class="card" style="margin-top:0">
-          <strong>Centro de Conciliación Laboral</strong>
-          <p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Instancia federal para resolver conflictos individuales de trabajo de manera gratuita y ágil.</p>
-        </div>
-        <div class="card" style="margin-top:0">
-          <strong>IMSS — Trámites</strong>
-          <p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Verifica tu historial de cotización, semanas cotizadas y datos de seguridad social.</p>
-        </div>
-        <div class="card" style="margin-top:0">
-          <strong>INFONAVIT</strong>
-          <p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Consulta el saldo de tu subcuenta de vivienda y trámites de crédito habitacional.</p>
-        </div>
-        <div class="card" style="margin-top:0">
-          <strong>CONSAR — Mi Afore</strong>
-          <p style="color:var(--ink-soft);font-size:.9rem;margin:.5rem 0 0">Conoce tu Afore, el saldo de tu cuenta individual y gestiona tu ahorro para el retiro.</p>
-        </div>
-      </div>
-    </div>
-
-    <p style="text-align:center;color:var(--ink-soft);font-size:.875rem;margin-top:2rem">Las calculadoras son herramientas informativas basadas en la Ley Federal del Trabajo vigente. Los resultados son estimados y no constituyen asesoría legal. Para tu caso específico, acude a la <strong>PROFEDET</strong>, al <strong>Centro de Conciliación Laboral</strong> o <strong>afíliate al sindicato</strong> para recibir orientación personalizada.</p>
-
-  </div>
-</section>
-
+<main id="contenido">
+<section class="page-hero"><div class="container">
+  <p class="crumbs"><a href="/">Inicio</a> <span aria-hidden="true">/</span> <span>Calculadoras</span></p>
+  <h1>Calculadoras laborales</h1>
+  <p>Estimaciones rápidas de lo que te corresponde. Son orientativas: tu caso puede variar.</p>
+</div></section>
+<section class="section"><div class="container">
+  <div class="chips"><a href="#liquidacion">Indemnización</a><a href="#finiquito">Finiquito</a><a href="#aguinaldo">Aguinaldo</a><a href="#vacaciones">Vacaciones</a><a href="#horas">Horas extra</a><a href="#dominical">Prima dominical</a><a href="#cuota">Cuota sindical</a></div>
+  <div class="calcs"><article class="calc" id="liquidacion" data-calc="liquidacion">
+  <h2>Indemnización por despido injustificado</h2>
+  <p class="law">Arts. 48, 50 y 162 de la LFT</p>
+  <div class="field"><label for="salario-liquidacion">Salario mensual bruto (MXN)</label>
+  <div class="pair"><input type="range" data-for="salario" min="3000" max="100000" step="500" value="10000" aria-label="Salario mensual bruto (MXN), deslizador"><input id="salario-liquidacion" name="salario" type="number" inputmode="decimal" min="0" step="any" value="10000" placeholder=""></div></div><div class="field"><label for="anios-liquidacion">Años completos trabajados</label>
+  <div class="pair"><input type="range" data-for="anios" min="0" max="40" step="1" value="3" aria-label="Años completos trabajados, deslizador"><input id="anios-liquidacion" name="anios" type="number" inputmode="decimal" min="0" step="any" value="3" placeholder=""></div></div><div class="field"><label for="meses-liquidacion">Meses adicionales</label>
+  <div class="pair"><input type="range" data-for="meses" min="0" max="11" step="1" value="0" aria-label="Meses adicionales, deslizador"><input id="meses-liquidacion" name="meses" type="number" inputmode="decimal" min="0" step="any" value="0" placeholder=""></div></div><div class="field"><label for="salmin-liquidacion">Salario mínimo diario vigente (opcional)</label><input id="salmin-liquidacion" name="salmin" type="number" inputmode="decimal" min="0" step="any" placeholder="Consúltalo en CONASAMI"><span class="help">Se usa para el tope de la prima de antigüedad (2 salarios mínimos).</span></div>
+  <div class="result" aria-live="polite"><small>Resultado estimado</small><div class="body"></div></div>
+  <p class="cta">No incluye salarios vencidos ni tu finiquito. <a href="/problema">Cuéntanos tu caso</a> y lo revisamos.</p>
+</article><article class="calc" id="finiquito" data-calc="finiquito">
+  <h2>Finiquito (renuncia o despido)</h2>
+  <p class="law">Arts. 76, 80 y 87 de la LFT</p>
+  <div class="field"><label for="salario-finiquito">Salario mensual bruto (MXN)</label>
+  <div class="pair"><input type="range" data-for="salario" min="3000" max="100000" step="500" value="10000" aria-label="Salario mensual bruto (MXN), deslizador"><input id="salario-finiquito" name="salario" type="number" inputmode="decimal" min="0" step="any" value="10000" placeholder=""></div></div><div class="field"><label for="ingreso-finiquito">Fecha de ingreso</label><input id="ingreso-finiquito" name="ingreso" type="date"></div><div class="field"><label for="salida-finiquito">Fecha de salida</label><input id="salida-finiquito" name="salida" type="date"></div><div class="field"><label for="vacTomadas-finiquito">Días de vacaciones ya tomados en este periodo</label>
+  <div class="pair"><input type="range" data-for="vacTomadas" min="0" max="30" step="1" value="0" aria-label="Días de vacaciones ya tomados en este periodo, deslizador"><input id="vacTomadas-finiquito" name="vacTomadas" type="number" inputmode="decimal" min="0" step="any" value="0" placeholder=""></div></div>
+  <div class="result" aria-live="polite"><small>Resultado estimado</small><div class="body"></div></div>
+  <p class="cta">Estimación de partes proporcionales. <a href="/derechos/finiquito-y-liquidacion">Qué incluye el finiquito</a>.</p>
+</article><article class="calc" id="aguinaldo" data-calc="aguinaldo">
+  <h2>Aguinaldo</h2>
+  <p class="law">Art. 87 de la LFT</p>
+  <div class="field"><label for="salario-aguinaldo">Salario mensual (MXN)</label>
+  <div class="pair"><input type="range" data-for="salario" min="3000" max="100000" step="500" value="12000" aria-label="Salario mensual (MXN), deslizador"><input id="salario-aguinaldo" name="salario" type="number" inputmode="decimal" min="0" step="any" value="12000" placeholder=""></div></div><div class="field"><label for="dias-aguinaldo">Días de aguinaldo (ley: 15)</label>
+  <div class="pair"><input type="range" data-for="dias" min="15" max="60" step="1" value="15" aria-label="Días de aguinaldo (ley: 15), deslizador"><input id="dias-aguinaldo" name="dias" type="number" inputmode="decimal" min="0" step="any" value="15" placeholder=""></div></div>
+  <div class="result" aria-live="polite"><small>Resultado estimado</small><div class="body"></div></div>
+  <p class="cta">Si trabajaste menos de un año, te toca la parte proporcional.</p>
+</article><article class="calc" id="vacaciones" data-calc="vacaciones">
+  <h2>Vacaciones y prima vacacional</h2>
+  <p class="law">Arts. 76 y 80 de la LFT</p>
+  <div class="field"><label for="salario-vacaciones">Salario diario (MXN)</label>
+  <div class="pair"><input type="range" data-for="salario" min="100" max="3000" step="10" value="400" aria-label="Salario diario (MXN), deslizador"><input id="salario-vacaciones" name="salario" type="number" inputmode="decimal" min="0" step="any" value="400" placeholder=""></div></div><div class="field"><label for="anios-vacaciones">Años de antigüedad cumplidos</label>
+  <div class="pair"><input type="range" data-for="anios" min="1" max="30" step="1" value="2" aria-label="Años de antigüedad cumplidos, deslizador"><input id="anios-vacaciones" name="anios" type="number" inputmode="decimal" min="0" step="any" value="2" placeholder=""></div></div>
+  <div class="result" aria-live="polite"><small>Resultado estimado</small><div class="body"></div></div>
+  
+</article><article class="calc" id="horas" data-calc="horas">
+  <h2>Horas extra</h2>
+  <p class="law">Arts. 66 al 68 de la LFT</p>
+  <div class="field"><label for="salario-horas">Salario diario (MXN)</label>
+  <div class="pair"><input type="range" data-for="salario" min="100" max="3000" step="10" value="400" aria-label="Salario diario (MXN), deslizador"><input id="salario-horas" name="salario" type="number" inputmode="decimal" min="0" step="any" value="400" placeholder=""></div></div><div class="field"><label for="horas-horas">Horas extra por semana</label>
+  <div class="pair"><input type="range" data-for="horas" min="1" max="20" step="1" value="6" aria-label="Horas extra por semana, deslizador"><input id="horas-horas" name="horas" type="number" inputmode="decimal" min="0" step="any" value="6" placeholder=""></div></div>
+  <div class="result" aria-live="polite"><small>Resultado estimado</small><div class="body"></div></div>
+  
+</article><article class="calc" id="dominical" data-calc="dominical">
+  <h2>Prima dominical</h2>
+  <p class="law">Art. 71 de la LFT</p>
+  <div class="field"><label for="salario-dominical">Salario diario (MXN)</label>
+  <div class="pair"><input type="range" data-for="salario" min="100" max="3000" step="10" value="400" aria-label="Salario diario (MXN), deslizador"><input id="salario-dominical" name="salario" type="number" inputmode="decimal" min="0" step="any" value="400" placeholder=""></div></div><div class="field"><label for="domingos-dominical">Domingos trabajados en el mes</label>
+  <div class="pair"><input type="range" data-for="domingos" min="1" max="5" step="1" value="4" aria-label="Domingos trabajados en el mes, deslizador"><input id="domingos-dominical" name="domingos" type="number" inputmode="decimal" min="0" step="any" value="4" placeholder=""></div></div>
+  <div class="result" aria-live="polite"><small>Resultado estimado</small><div class="body"></div></div>
+  
+</article><article class="calc" id="cuota" data-calc="cuota">
+  <h2>Cuota sindical (2%)</h2>
+  <p class="law">Cuota ordinaria sobre salario</p>
+  <div class="field"><label for="sdi-cuota">Salario diario (MXN)</label>
+  <div class="pair"><input type="range" data-for="sdi" min="100" max="3000" step="10" value="450" aria-label="Salario diario (MXN), deslizador"><input id="sdi-cuota" name="sdi" type="number" inputmode="decimal" min="0" step="any" value="450" placeholder=""></div></div>
+  <div class="result" aria-live="polite"><small>Resultado estimado</small><div class="body"></div></div>
+  
+</article></div>
+  <div class="closing" style="margin-top:3rem;border-radius:var(--radius-l);overflow:hidden"><div class="container" style="padding:2.5rem 2rem">
+    <div><h2 style="font-size:clamp(1.6rem,3vw,2.2rem)">¿Los números no cuadran con lo que te pagaron?</h2><p>Cuéntanos tu caso. Un asesor lo revisa sin costo.</p></div>
+    <div class="actions"><a class="btn btn-gold" href="/problema">Tengo un problema</a></div>
+  </div></div>
+  <p style="text-align:center;color:var(--ink-soft);font-size:.9rem;margin-top:2rem;max-width:62ch;margin-left:auto;margin-right:auto">Herramientas informativas basadas en la Ley Federal del Trabajo. No constituyen asesoría legal. Para tu caso, acude a PROFEDET o al Centro de Conciliación Laboral, o escríbenos.</p>
+</div></section>
+</main>
 <footer class="footer">
-  <div class="container footer-bottom" style="border-top:none;margin-top:0;padding-top:0">
-    <span>© 2026 Confederación Joven de México — Baja California.</span>
-    <a href="/" style="color:var(--gold-bright)">Volver al inicio</a>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="/" class="brand"><img src="/img/logo-160.png" width="44" height="44" alt=""><span class="brand-text"><strong>Confederación Joven de México</strong><span>Baja California</span></span></a>
+        <p style="max-width:36ch">Sindicato legalmente constituido. Sindicalismo actual para las y los trabajadores de Baja California.</p>
+      </div>
+      <div>
+        <h4>Ayuda</h4>
+        <a href="/problema">Tengo un problema</a>
+        <a href="/afiliate">Afíliate</a>
+        <a href="/derechos">Tus derechos</a>
+        <a href="/calculadoras">Calculadoras</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="tel:+526634905561">Tel. 663 490 5561</a>
+        <a href="mailto:sjmxbc@gmail.com">sjmxbc@gmail.com</a>
+        <a href="/privacidad">Aviso de privacidad</a>
+        <a href="https://confederacionjoven.mx" target="_blank" rel="noopener">Sede nacional CJM</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Confederación Joven de México, Baja California.</span>
+      <span>Información general. No sustituye asesoría legal.</span>
+    </div>
   </div>
 </footer>
-
-<script src="/js/main.js?v=3"></script>
-<script>
-// ===== Slider fill (navy izquierda, crema derecha) =====
-function _fillSlider(el){
-  var mn=parseFloat(el.min)||0,mx=parseFloat(el.max)||100,v=parseFloat(el.value)||0;
-  var pct=((v-mn)/(mx-mn)*100).toFixed(1);
-  el.style.background='linear-gradient(to right,#0d1b2e '+pct+'%,#e4d9c3 '+pct+'%)';
-}
-// Inicializar al cargar y actualizar en cada cambio
-document.querySelectorAll('input[type="range"]').forEach(_fillSlider);
-document.addEventListener('input',function(e){if(e.target.type==='range')_fillSlider(e.target);});
-
-// ===== Helpers para nuevas calculadoras =====
-function _vacDias(a){
-  if(a<1)return 0;if(a<2)return 12;if(a<3)return 14;if(a<4)return 16;if(a<5)return 18;
-  return 20+2*Math.floor((a-5)/5);
-}
-function _fmtMXN(v){
-  return '$'+v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
-}
-function _calcFiniquitoBase(salarioMensual,vacTomadas,ingreso,salida){
-  var salDiario=salarioMensual/30;
-  var diasTotal=(salida-ingreso)/86400000;
-  var anios=diasTotal/365;
-  // Último aniversario
-  var ultAniv=new Date(ingreso);
-  ultAniv.setFullYear(salida.getFullYear());
-  if(ultAniv>salida)ultAniv.setFullYear(salida.getFullYear()-1);
-  var diasEsteAnio=(salida-ultAniv)/86400000;
-  var aguinaldo=(salDiario*15)*(diasEsteAnio/365);
-  var diasVacCorr=_vacDias(Math.floor(anios));
-  var vacPropDias=diasVacCorr*(diasEsteAnio/365)-Math.max(0,vacTomadas);
-  var vacPago=Math.max(0,vacPropDias)*salDiario;
-  var primaVac=vacPago*0.25;
-  return{salDiario:salDiario,diasEsteAnio:Math.round(diasEsteAnio),aguinaldo:aguinaldo,vacPago:vacPago,primaVac:primaVac};
-}
-
-// ===== Calculadora 7: Renuncia Voluntaria =====
-function calcRenuncia(){
-  var salario=parseFloat(document.getElementById('rv-salario').value)||0;
-  var vacTomadas=parseFloat(document.getElementById('rv-vacsion').value)||0;
-  var ingreso=new Date(document.getElementById('rv-ingreso').value);
-  var renuncia=new Date(document.getElementById('rv-renuncia').value);
-  var res=document.getElementById('rv-resultado');
-  if(!salario||isNaN(ingreso.getTime())||isNaN(renuncia.getTime())||renuncia<=ingreso){res.style.display='none';return;}
-  var d=_calcFiniquitoBase(salario,vacTomadas,ingreso,renuncia);
-  var total=d.aguinaldo+d.vacPago+d.primaVac;
-  document.getElementById('rv-detalle').innerHTML=
-    '<div style="display:flex;flex-direction:column;gap:.3rem;font-size:.9rem">'+
-    '<span>Días trabajados este periodo: '+d.diasEsteAnio+'</span>'+
-    '<span>Aguinaldo proporcional: '+_fmtMXN(d.aguinaldo)+'</span>'+
-    '<span>Vacaciones proporcionales: '+_fmtMXN(d.vacPago)+'</span>'+
-    '<span>Prima vacacional (25%): '+_fmtMXN(d.primaVac)+'</span>'+
-    '<strong style="color:var(--navy-deep);font-size:1.1rem;margin-top:.5rem">Total finiquito estimado: '+_fmtMXN(total)+' MXN</strong>'+
-    '</div>';
-  res.style.display='block';
-}
-
-// ===== Calculadora 8: Despido Justificado =====
-function calcDespJust(){
-  var salario=parseFloat(document.getElementById('dj-salario').value)||0;
-  var vacTomadas=parseFloat(document.getElementById('dj-vacsion').value)||0;
-  var ingreso=new Date(document.getElementById('dj-ingreso').value);
-  var despido=new Date(document.getElementById('dj-despido').value);
-  var res=document.getElementById('dj-resultado');
-  if(!salario||isNaN(ingreso.getTime())||isNaN(despido.getTime())||despido<=ingreso){res.style.display='none';return;}
-  var d=_calcFiniquitoBase(salario,vacTomadas,ingreso,despido);
-  var total=d.aguinaldo+d.vacPago+d.primaVac;
-  document.getElementById('dj-detalle').innerHTML=
-    '<div style="display:flex;flex-direction:column;gap:.3rem;font-size:.9rem">'+
-    '<span>Días trabajados este periodo: '+d.diasEsteAnio+'</span>'+
-    '<span>Aguinaldo proporcional: '+_fmtMXN(d.aguinaldo)+'</span>'+
-    '<span>Vacaciones proporcionales: '+_fmtMXN(d.vacPago)+'</span>'+
-    '<span>Prima vacacional (25%): '+_fmtMXN(d.primaVac)+'</span>'+
-    '<strong style="color:var(--navy-deep);font-size:1.1rem;margin-top:.5rem">Total finiquito estimado: '+_fmtMXN(total)+' MXN</strong>'+
-    '</div>';
-  res.style.display='block';
-}
-
-// ===== Calculadora 9: Despido Injustificado (liquidación) =====
-function calcLiquidacion(){
-  var salario=parseFloat(document.getElementById('di-salario').value)||0;
-  var anios=parseFloat(document.getElementById('di-anios').value)||0;
-  var meses=parseFloat(document.getElementById('di-meses').value)||0;
-  var salmin=parseFloat(document.getElementById('di-salmin').value)||0;
-  var res=document.getElementById('di-resultado');
-  if(!salario){res.style.display='none';return;}
-  var salDiario=salario/30;
-  var aniosTotal=anios+(meses/12);
-  var tope=salmin>0?25*salmin:salDiario;
-  var salTopado=Math.min(salDiario,tope);
-  var tresMeses=salDiario*90;
-  var veinteDias=salTopado*20*aniosTotal;
-  var primAntig=Math.min(salDiario,2*tope)*12*aniosTotal;
-  var total=tresMeses+veinteDias+primAntig;
-  document.getElementById('di-detalle').innerHTML=
-    '<div style="display:flex;flex-direction:column;gap:.3rem;font-size:.9rem">'+
-    '<span>3 meses de salario (Art. 50): '+_fmtMXN(tresMeses)+'</span>'+
-    '<span>20 días × año ('+aniosTotal.toFixed(1)+' años): '+_fmtMXN(veinteDias)+'</span>'+
-    '<span>Prima de antigüedad (12 días × año): '+_fmtMXN(primAntig)+'</span>'+
-    '<strong style="color:var(--navy-deep);font-size:1.1rem;margin-top:.5rem">Total liquidación estimada: '+_fmtMXN(total)+' MXN</strong>'+
-    '</div>';
-  res.style.display='block';
-}
-</script>
+<script src="/js/main.js?v=8" defer></script>
 </body>
 </html>
